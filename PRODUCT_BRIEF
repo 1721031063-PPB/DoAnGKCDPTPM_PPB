@@ -1,0 +1,136 @@
+# SKYCAST AI — Product Brief
+
+**Ngày:** 02/04/2026 | **Phiên bản:** 3.1 | **Trạng thái:** Hoàn thành
+
+---
+
+## 1. Tổng Quan Sản Phẩm
+
+**SKYCAST AI** là một ứng dụng web thời tiết thế hệ mới, kết hợp dữ liệu thời tiết thực từ API toàn cầu với sức mạnh của trí tuệ nhân tạo (GPT-4o-mini) để cung cấp trải nghiệm thời tiết cá nhân hóa, thông minh và thân thiện với người Việt.
+
+---
+
+## 2. Vấn Đề Cần Giải Quyết
+
+Các ứng dụng thời tiết hiện tại:
+- Hiển thị số liệu khô khan, khó hiểu với người dùng phổ thông
+- Không cá nhân hóa — không gợi ý hành động thiết thực
+- Không có tính năng lưu trữ, theo dõi nhiều địa điểm
+- Giao diện tiếng Anh, xa lạ với người dùng Việt Nam
+- Thiếu phân tích sức khỏe (AQI, phấn hoa, UV)
+
+---
+
+## 3. Giải Pháp
+
+SKYCAST AI giải quyết toàn bộ bằng:
+
+| Vấn đề | Giải pháp |
+|---|---|
+| Số liệu khô khan | AI tóm tắt 80 từ thân thiện bằng tiếng Việt |
+| Không cá nhân hóa | AI Cố Vấn: gợi ý trang phục + giờ vàng xuất phát |
+| Không lưu trữ | MongoDB lưu danh sách yêu thích theo tài khoản |
+| Giao diện tiếng Anh | 100% Việt hóa, dịch tự động 50+ mô tả thời tiết |
+| Thiếu sức khỏe | Widget AQI + phấn hoa + UV Index + cảnh báo |
+
+---
+
+## 4. Đối Tượng Người Dùng
+
+- **Chính:** Người Việt Nam 18–40 tuổi, sử dụng smartphone/laptop hàng ngày
+- **Phụ:** Nhà phát triển muốn nhúng widget thời tiết vào website của họ
+- **Đặc biệt:** Người hay đi du lịch, cần lên kế hoạch chuyến đi
+
+---
+
+## 5. Tính Năng Cốt Lõi (MVP)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  🌡️  Thời tiết thực — OpenWeatherMap API            │
+│  🤖  Tóm tắt AI — GPT-4o-mini (Fallback nội bộ)    │
+│  📅  Dự báo 5 ngày + Biểu đồ 24h                   │
+│  💊  Sức khỏe: AQI, UV, Phấn hoa                   │
+│  🗺️  Bản đồ đa lớp (6 loại dữ liệu) — Leaflet       │
+│  ⭐  Yêu thích lưu trên MongoDB                     │
+│  🔔  Push Notification khi có bão/mưa to            │
+│  ⚖️  So sánh 2 thành phố song song                  │
+│  📅  Lịch sử 30 ngày — Open-Meteo (miễn phí)       │
+│  🧩  Widget nhúng iframe (3 theme)                  │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 6. Stack Công Nghệ
+
+```
+Frontend:    Next.js 16 (App Router) + React 19 + TypeScript
+Styling:     Tailwind CSS + Glassmorphism + Framer Motion
+Backend:     Next.js API Routes (Server-Side)
+Database:    MongoDB + Mongoose (Favorites, Users)
+Auth:        NextAuth v4 (JWT + Credentials + bcrypt)
+Charts:      Recharts (Area, Bar)
+Maps:        Leaflet + react-leaflet
+AI:          OpenAI GPT-4o-mini (JSON Mode + Fallback)
+Extra APIs:  OpenWeatherMap, Open-Meteo, WAQI, Ambee
+```
+
+---
+
+## 7. Kiến Trúc Hệ Thống
+
+```
+[Người dùng] 
+    ↓
+[🖥️ NEXT.JS FRONTEND - CLIENT SIDE] 
+  ├── src/app/components (Biểu đồ, Widget)
+  ├── src/app/favorites (Trang Quản lý Yêu thích chuyên biệt)
+  ├── src/app/ (UI Các trang web)
+  └── ←→ [Quản lý Session Đăng nhập]
+    ↓
+[⚙️ BACKEND API LAYER - SERVER SIDE]
+    ├── src/app/api/weather   → OpenWeatherMap
+    ├── src/app/api/summary   → GPT-4o-mini + Fallback
+    ├── src/app/api/planner   → GPT JSON Mode + Fallback
+    ├── src/app/api/health    → WAQI + Ambee
+    ├── src/app/api/history   → Open-Meteo
+    ├── src/app/api/favorites → CRUD MongoDB 
+    └── src/app/api/auth      → NextAuth + bcrypt
+    ↓
+[🗄️ DATABASE]
+    └── MongoDB — Lưu User.ts & Favorites array
+```
+
+---
+
+## 8. Điểm Khác Biệt (USP)
+
+1. **Hoạt động khi không có OpenAI** — Fallback thông minh tự sinh nội dung
+2. **Tiếng Việt hoàn toàn** — Kể cả mô tả API (few clouds → Ít mây)
+3. **Lịch sử 30 ngày miễn phí** — Open-Meteo, không cần trả tiền
+4. **Nhúng được** — Widget iframe cho mọi website
+5. **Cảnh báo thông minh** — Push Notification giới hạn 1 lần/30 phút
+
+---
+
+## 9. Metrics & KPIs Đề Xuất
+
+| Chỉ số | Mục tiêu |
+|---|---|
+| Thời gian load trang đầu | < 2 giây |
+| Thời gian response API thời tiết | < 1.5 giây |
+| Uptime | > 99.5% |
+| Tỉ lệ người dùng tạo tài khoản | > 20% |
+| Tỉ lệ lưu yêu thích | > 50% (trong users đã login) |
+
+---
+
+## 10. Giới Hạn Hiện Tại
+
+| Giới hạn | Giải pháp đề xuất |
+|---|---|
+| OpenAI quota giới hạn | Fallback nội bộ đã xử lý; nạp credit khi cần |
+| Push Notification chỉ client-side | Tích hợp Web Push Server-side thực thụ |
+| UV Index tính gần đúng (không dùng OnecallAPI) | Nâng cấp lên OpenWeather OneCall v3 |
+| Không có Dark/Light Mode toggle | Thêm CSS variables + localStorage |
