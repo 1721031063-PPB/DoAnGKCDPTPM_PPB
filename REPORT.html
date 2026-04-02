@@ -3,629 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYCAST AI — Báo Cáo Dự Án Cuối Kỳ</title>
-    <meta name="description" content="Báo cáo tổng hợp dự án SKYCAST AI — Ứng dụng Thời tiết Thông minh tích hợp AI. Phạm Phước Bình — 1721031063">
+    <title>SKYCAST AI — Báo Cáo Dự Án (v3.1)</title>
+    <meta name="description" content="Báo cáo tổng kết dự án SKYCAST AI — Trợ lý Thời tiết Thông minh tích hợp Generative AI.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3b82f6;
-            --secondary: #6366f1;
-            --accent: #f472b6;
-            --green: #34d399;
-            --bg: #0a0f1e;
-            --card: rgba(15, 23, 42, 0.8);
-            --glass: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(255, 255, 255, 0.09);
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
+            --secondary: #7c3aed;
+            --bg: #0f172a;
+            --card: rgba(30, 41, 59, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+            --muted: #94a3b8;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            background-image:
-                radial-gradient(ellipse at 10% 0%, rgba(59,130,246,0.18) 0, transparent 50%),
-                radial-gradient(ellipse at 90% 10%, rgba(99,102,241,0.15) 0, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(244,114,182,0.1) 0, transparent 50%);
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
             color: var(--text);
-            line-height: 1.7;
-            padding: 30px 20px 80px;
+            line-height: 1.6;
+            padding: 40px 20px;
         }
-
-        .container { max-width: 920px; margin: 0 auto; }
-
-        /* ─── HEADER ─── */
-        header {
-            text-align: center;
-            margin-bottom: 72px;
-            padding-top: 20px;
-        }
-        .kv-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(59,130,246,0.12);
-            border: 1px solid rgba(59,130,246,0.3);
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        /* ── HEADER ── */
+        header { text-align: center; margin-bottom: 60px; }
+        .badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
             color: #60a5fa;
-            padding: 5px 18px;
+            padding: 4px 12px;
             border-radius: 99px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: clamp(2.2rem, 5vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.15;
-            margin-bottom: 14px;
-        }
-        .meta-row {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .meta-chip {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 5px 16px;
-            border-radius: 99px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 7px 20px;
-            border-radius: 99px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 20px;
-            margin-inline: 6px;
-            transition: opacity .2s;
-        }
-        .link-btn:hover { opacity: 0.8; }
-        .btn-github { border: 1px solid #60a5fa; color: #60a5fa; }
-        .btn-yt { border: 1px solid #f87171; color: #f87171; }
-
-        /* ─── SECTION / CARD ─── */
-        section {
-            background: var(--card);
-            backdrop-filter: blur(18px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 44px 48px;
-            margin-bottom: 36px;
-            box-shadow: 0 20px 48px -12px rgba(0,0,0,0.45);
-        }
-        h2 {
-            font-size: 1.45rem;
-            font-weight: 700;
-            color: #60a5fa;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 24px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #a78bfa;
-            margin: 28px 0 10px;
-        }
-        p { color: #cbd5e1; margin-bottom: 14px; }
-        strong { color: var(--text); }
-        a { color: #60a5fa; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-
-        /* ─── STATS GRID ─── */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-        .stat-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 20px;
-            text-align: center;
-        }
-        .stat-num {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .stat-label {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* ─── FEATURE GRID ─── */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-        .feature-card {
-            background: rgba(255,255,255,0.025);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 22px;
-        }
-        .feature-icon { font-size: 1.6rem; margin-bottom: 10px; }
-        .feature-title { font-weight: 600; color: var(--text); margin-bottom: 6px; font-size: 0.95rem; }
-        .feature-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-
-        /* ─── TABLE ─── */
-        table { width: 100%; border-collapse: collapse; margin: 18px 0; }
-        th {
-            text-align: left;
-            padding: 12px 16px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.04);
-        }
-        td { padding: 13px 16px; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; color: #cbd5e1; }
-        tr:last-child td { border-bottom: none; }
-
-        /* ─── SPRINT TIMELINE ─── */
-        .sprint { border-left: 3px solid; padding: 0 0 30px 24px; position: relative; }
-        .sprint::before {
-            content: '';
-            width: 12px; height: 12px;
-            border-radius: 50%;
-            background: currentColor;
-            position: absolute;
-            left: -7.5px; top: 3px;
-        }
-        .sprint-1 { border-color: #60a5fa; color: #60a5fa; }
-        .sprint-2 { border-color: #a78bfa; color: #a78bfa; }
-        .sprint-3 { border-color: #34d399; color: #34d399; }
-        .sprint-4 { border-color: #f472b6; color: #f472b6; }
-        .sprint-5 { border-color: #fb923c; color: #fb923c; }
-        .sprint-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-        .sprint-body { color: #94a3b8; font-size: 0.88rem; }
-
-        /* ─── CHECKLIST ─── */
-        .checklist { list-style: none; padding: 0; }
-        .checklist li {
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 6px;
-            background: rgba(52,211,153,0.05);
-            border: 1px solid rgba(52,211,153,0.12);
-        }
-        .checklist li .check { color: #34d399; font-weight: 700; flex-shrink: 0; }
-
-        /* ─── CODE ─── */
-        pre {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px;
-            padding: 20px 22px;
-            overflow-x: auto;
-            font-size: 0.82rem;
-            line-height: 1.65;
-            color: #a5f3fc;
-            margin: 18px 0;
-        }
-        code { font-family: 'Courier New', monospace; }
-
-        /* ─── LIMITATION ─── */
-        .limit-item {
-            background: rgba(251,146,60,0.06);
-            border: 1px solid rgba(251,146,60,0.18);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            font-size: 0.88rem;
-            color: #fed7aa;
-        }
-        .limit-title { font-weight: 600; color: #fb923c; margin-bottom: 3px; }
-
-        /* ─── ROADMAP ─── */
-        .roadmap-item {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 14px;
-            align-items: flex-start;
-        }
-        .version-tag {
-            background: rgba(99,102,241,0.2);
-            border: 1px solid rgba(99,102,241,0.35);
-            color: #a5b4fc;
-            padding: 2px 10px;
-            border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 700;
-            white-space: nowrap;
-            flex-shrink: 0;
-            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 16px;
         }
-
-        /* ─── QUOTE ─── */
-        blockquote {
-            border-left: 4px solid #3b82f6;
-            padding: 14px 20px;
-            margin: 24px 0 0;
-            color: var(--text-muted);
-            font-style: italic;
-            background: rgba(59,130,246,0.05);
-            border-radius: 0 12px 12px 0;
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            text-align: center;
-            margin-top: 70px;
-            color: var(--text-muted);
+        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; 
+             background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 1.1rem; color: var(--muted); font-weight: 400; }
+        .meta { margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+        .meta strong { color: var(--text); }
+        .links { margin-top: 30px; display: flex; justify-content: center; gap: 15px; }
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
             font-size: 0.85rem;
-            line-height: 2;
+            font-weight: 600;
+            transition: 0.2s;
         }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ── SECTIONS ── */
+        section {
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; color: #38bdf8; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 16px; color: #cbd5e1; }
+
+        /* ── TABLES ── */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th { text-align: left; padding: 12px; color: var(--muted); border-bottom: 2px solid var(--border); }
+        td { padding: 12px; border-bottom: 1px solid var(--border); }
+        tr:last-child td { border-bottom: none; }
+        .pros { color: #4ade80; }
+        .cons { color: #f87171; }
+
+        /* ── CHECKLIST ── */
+        ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        li { position: relative; padding-left: 28px; font-size: 0.9rem; color: #cbd5e1; }
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: 800;
+        }
+
+        /* ── FOOTER ── */
+        footer { text-align: center; margin-top: 60px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); padding-top: 30px; }
 
         @media (max-width: 640px) {
-            section { padding: 28px 22px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            ul { grid-template-columns: 1fr; }
+            section { padding: 25px; }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-
-    <!-- HEADER -->
-    <header>
-        <div class="kv-badge">📋 Báo Cáo Dự Án Cuối Kỳ</div>
-        <h1>🌤️ SKYCAST AI</h1>
-        <p style="color: var(--text-muted); font-size:1.05rem; font-weight:300;">Ứng dụng Thời tiết Thông minh tích hợp AI — v3.1 Full-Stack</p>
-        <div class="meta-row">
-            <span class="meta-chip">Phạm Phước Bình — 1721031063</span>
-            <span class="meta-chip">Chuyên Đề Phát Triển Phần Mềm</span>
-            <span class="meta-chip">02/04/2026</span>
-        </div>
-        <div>
-            <a href="https://github.com/1721031063-PPB/DoAnGiuaKy" class="link-btn btn-github" target="_blank">⌥ GitHub Repository</a>
-            <a href="https://youtu.be/V6vfWKGXHR0" class="link-btn btn-yt" target="_blank">▶ Video Demo</a>
-        </div>
-    </header>
-
-    <!-- 1. MÔ TẢ SẢN PHẨM -->
-    <section id="product">
-        <h2>01. Mô Tả Sản Phẩm</h2>
-        <p><strong>SKYCAST AI</strong> là ứng dụng web thời tiết thế hệ mới, kết hợp dữ liệu thời tiết thực từ các API toàn cầu với sức mạnh của <strong>Trí tuệ nhân tạo tạo sinh (GPT-4o-mini)</strong> để biến những con số khí tượng khô khan thành lời khuyên hành động thực tế, thân thiện và hoàn toàn bằng tiếng Việt.</p>
-        <p>Ứng dụng không chỉ dừng lại ở việc hiển thị nhiệt độ — SKYCAST AI giúp người dùng <strong>lập kế hoạch cuộc sống thông minh hơn</strong> thông qua tóm tắt AI tự nhiên, cố vấn lịch trình chuyến đi, bản đồ thời tiết đa lớp và cảnh báo thời tiết xấu chủ động.</p>
-
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-num">19</div>
-                <div class="stat-label">Tính năng hoàn thành</div>
+    <div class="container">
+        <header>
+            <span class="badge">Dự án cuối kỳ — v3.1</span>
+            <h1>SKYCAST AI</h1>
+            <p class="subtitle">Trợ Lý Thời Tiết Thông Minh tích hợp AI</p>
+            <div class="meta">
+                <strong>Sinh viên:</strong> Phạm Phước Bình — 1721031063 <br>
+                <strong>Môn học:</strong> Chuyên Đề Phát Triển Phần Mềm <br>
+                <strong>Ngày hoàn thành:</strong> 02/04/2026
             </div>
-            <div class="stat-box">
-                <div class="stat-num">11</div>
-                <div class="stat-label">API Routes</div>
+            <div class="links">
+                <a href="https://github.com/1721031063-PPB/DoAnGiuaKy" class="btn btn-primary" target="_blank">View on GitHub</a>
+                <a href="https://youtu.be/V6vfWKGXHR0" class="btn btn-ghost" target="_blank">Watch Video</a>
             </div>
-            <div class="stat-box">
-                <div class="stat-num">50+</div>
-                <div class="stat-label">Mô tả Việt hóa</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-num">5</div>
-                <div class="stat-label">Trang giao diện</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-num">4</div>
-                <div class="stat-label">APIs bên ngoài</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-num">100%</div>
-                <div class="stat-label">TypeScript</div>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- 2. VẤN ĐỀ & GIẢI PHÁP -->
-    <section id="problem">
-        <h2>02. Vấn Đề &amp; Giải Pháp</h2>
-        <p>Các ứng dụng thời tiết hiện tại chưa phục vụ tốt người dùng Việt Nam vì nhiều lý do. SKYCAST AI được sinh ra để giải quyết từng vấn đề một cách hệ thống:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>❌ Vấn Đề</th>
-                    <th>✅ Giải Pháp SKYCAST AI</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Dữ liệu UV, AQI khô khan, khó hiểu</td><td>AI Summary: GPT-4o-mini giải thích tiếng Việt tự nhiên</td></tr>
-                <tr><td>Không biết mặc gì hay đi lúc nào</td><td>AI Planner: Điểm an toàn, trang phục &amp; giờ vàng xuất phát</td></tr>
-                <tr><td>App crash khi OpenAI lỗi hoặc hết quota</td><td>Smart Fallback: Thuật toán nội bộ tự sinh nội dung</td></tr>
-                <tr><td>Mất dữ liệu khi đổi trình duyệt</td><td>Cloud Persistence: MongoDB lưu Favorites theo tài khoản</td></tr>
-                <tr><td>Dữ liệu lịch sử thường tốn phí cao</td><td>Open-Meteo: Lịch sử 30 ngày hoàn toàn miễn phí</td></tr>
-                <tr><td>Phải mở app mới biết trời sắp mưa</td><td>Web Push: Thông báo đẩy chủ động qua Service Worker</td></tr>
-                <tr><td>Giao diện tiếng Anh xa lạ</td><td>100% Việt hóa: Dịch 50+ trạng thái thời tiết tự động</td></tr>
-            </tbody>
-        </table>
-    </section>
+        <section>
+            <h2>01. Mô tả sản phẩm</h2>
+            <p><strong>SKYCAST AI</strong> là một nền tảng dự báo thời tiết Full-Stack hiện đại, kết hợp sức mạnh của Generative AI (GPT-4o-mini) để cá nhân hóa thông tin thời tiết cho người Việt. Ứng dụng không chỉ hiển thị các con số mà còn đưa ra các <strong>lời khuyên hành động</strong> thiết thực như trang phục phù hợp, khung giờ vàng di chuyển và tóm tắt thời tiết bằng ngôn ngữ tự nhiên.</p>
+        </section>
 
-    <!-- 3. ĐỐI TƯỢNG & USP -->
-    <section id="audience">
-        <h2>03. Đối Tượng &amp; Điểm Khác Biệt</h2>
-        <h3>Đối tượng mục tiêu</h3>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-icon">👩‍💻</div>
-                <div class="feature-title">Người Việt Trẻ</div>
-                <div class="feature-desc">18–40 tuổi, yêu công nghệ, cần thông tin thời tiết nhanh &amp; thiết thực hàng ngày.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧳</div>
-                <div class="feature-title">Du Khách</div>
-                <div class="feature-desc">Cần lên kế hoạch chuyến đi chính xác, an toàn dựa trên điều kiện thời tiết thực.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚙️</div>
-                <div class="feature-title">Developers</div>
-                <div class="feature-desc">Muốn nhúng widget thời tiết chuyên nghiệp vào website cá nhân qua iframe.</div>
-            </div>
-        </div>
-        <h3>Unique Selling Points (USP)</h3>
-        <ul style="padding-left: 0; list-style:none;">
-            <li style="padding:10px 0; border-bottom:1px solid var(--glass-border); color:#cbd5e1;"><strong style="color:#f472b6;">①</strong> &nbsp;<strong>AI-First Experience</strong> — AI là trọng tâm trải nghiệm, không phải tính năng phụ.</li>
-            <li style="padding:10px 0; border-bottom:1px solid var(--glass-border); color:#cbd5e1;"><strong style="color:#f472b6;">②</strong> &nbsp;<strong>Hoạt động 24/7</strong> — Fallback đảm bảo app phục vụ ngay cả khi không có OpenAI key.</li>
-            <li style="padding:10px 0; border-bottom:1px solid var(--glass-border); color:#cbd5e1;"><strong style="color:#f472b6;">③</strong> &nbsp;<strong>Bản đồ 6 lớp</strong> — Radar mưa, Mây, Gió, Nhiệt độ, Áp suất, Lượng mưa tích hợp Leaflet.</li>
-            <li style="padding:10px 0; border-bottom:1px solid var(--glass-border); color:#cbd5e1;"><strong style="color:#f472b6;">④</strong> &nbsp;<strong>Việt hóa sâu</strong> — Dịch tự động 50+ trạng thái từ API quốc tế sang tiếng Việt tự nhiên.</li>
-            <li style="padding:10px 0; color:#cbd5e1;"><strong style="color:#f472b6;">⑤</strong> &nbsp;<strong>Widget nhúng</strong> — 3 theme màu sắc, nhúng vào bất kỳ website nào qua thẻ <code>&lt;iframe&gt;</code>.</li>
-        </ul>
-    </section>
+        <section>
+            <h2>02. Vấn đề & Giải pháp</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Vấn đề hiện tại</th>
+                        <th>Giải pháp SKYCAST AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cons">Số liệu UV, AQI... khô khan, khó hiểu.</td>
+                        <td class="pros"><strong>AI Summary:</strong> Tóm tắt tiếng Việt ~80 từ.</td>
+                    </tr>
+                    <tr>
+                        <td class="cons">Không biết mặc gì, đi lúc nào cho hợp lý.</td>
+                        <td class="pros"><strong>AI Planner:</strong> Cố vấn trang phục & Giờ vàng.</td>
+                    </tr>
+                    <tr>
+                        <td class="cons">Lỗi app khi AI API quá tải.</td>
+                        <td class="pros"><strong>Smart Fallback:</strong> Tự sinh nội dung nội bộ.</td>
+                    </tr>
+                    <tr>
+                        <td class="cons">Mất danh sách yêu thích khi đổi thiết bị.</td>
+                        <td class="pros"><strong>Cloud Sync:</strong> Lưu trên MongoDB Atlas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- 4. TECH STACK -->
-    <section id="stack">
-        <h2>04. Stack Công Nghệ</h2>
-        <h3>Frontend Stack</h3>
-        <table>
-            <thead><tr><th>Thư viện / Công nghệ</th><th>Phiên bản</th><th>Vai trò</th></tr></thead>
-            <tbody>
-                <tr><td><strong>Next.js</strong></td><td>16.1.7</td><td>Framework Full-Stack (App Router + Turbopack)</td></tr>
-                <tr><td><strong>React</strong></td><td>19</td><td>UI Library</td></tr>
-                <tr><td><strong>TypeScript</strong></td><td>5.7</td><td>Type safety toàn bộ dự án</td></tr>
-                <tr><td><strong>Tailwind CSS</strong></td><td>3.4.4</td><td>Styling — Glassmorphism design system</td></tr>
-                <tr><td><strong>Framer Motion</strong></td><td>11.0</td><td>Hiệu ứng khí quyển động (mưa, tuyết, mây)</td></tr>
-                <tr><td><strong>Recharts</strong></td><td>3.8</td><td>Biểu đồ nhiệt độ 24h &amp; lịch sử 30 ngày</td></tr>
-                <tr><td><strong>Leaflet</strong></td><td>1.9</td><td>Bản đồ tương tác đa lớp</td></tr>
-            </tbody>
-        </table>
-        <h3>Backend Stack &amp; External APIs</h3>
-        <table>
-            <thead><tr><th>Công nghệ / API</th><th>Vai trò</th></tr></thead>
-            <tbody>
-                <tr><td><strong>MongoDB + Mongoose</strong></td><td>Cơ sở dữ liệu lưu User &amp; Favorites</td></tr>
-                <tr><td><strong>NextAuth.js v4</strong></td><td>Authentication (JWT + Credentials Strategy)</td></tr>
-                <tr><td><strong>bcryptjs</strong></td><td>Mã hóa mật khẩu người dùng</td></tr>
-                <tr><td><strong>OpenAI SDK (GPT-4o-mini)</strong></td><td>AI Summary &amp; AI Planner (JSON Mode)</td></tr>
-                <tr><td><strong>OpenWeatherMap</strong></td><td>Thời tiết thực &amp; dự báo 5 ngày + tile layer</td></tr>
-                <tr><td><strong>Open-Meteo</strong></td><td>Lịch sử 30 ngày &amp; AQI (miễn phí)</td></tr>
-                <tr><td><strong>RainViewer</strong></td><td>Tile layer Radar mưa realtime</td></tr>
-            </tbody>
-        </table>
-    </section>
+        <section>
+            <h2>03. Quy trình thực hiện (Agile)</h2>
+            <p>Dự án được hoàn thành qua 5 Sprint trong vòng 6 tuần:</p>
+            <p><strong>• Sprint 1:</strong> Thiết kế UI Glassmorphism & Tích hợp OpenWeatherMap.</p>
+            <p><strong>• Sprint 2:</strong> Hệ thống Auth (NextAuth + bcrypt) & MongoDB persistence.</p>
+            <p><strong>• Sprint 3:</strong> Biểu đồ Recharts, Bản đồ Leaflet & Dữ liệu lịch sử 30 ngày.</p>
+            <p><strong>• Sprint 4:</strong> Tích hợp GPT-4o-mini & Thuật toán Fallback ổn định cao.</p>
+            <p><strong>• Sprint 5:</strong> Trang Favorites, Compare, Widget nhúng & Thông báo đẩy (Web Push).</p>
+        </section>
 
-    <!-- 5. KIẾN TRÚC -->
-    <section id="architecture">
-        <h2>05. Kiến Trúc Hệ Thống</h2>
-        <p>Dự án sử dụng kiến trúc <strong>Monolithic hiện đại</strong> trên Next.js — kết hợp Frontend và Backend trong một codebase thống nhất, tận dụng App Router để tối ưu SSR và API Routes làm Backend layer.</p>
-        <pre><code>[Người dùng / Browser]
-        ↓
-[🖥️ NEXT.JS FRONTEND — CLIENT SIDE]
-   ├─ src/app/components/    (Charts, Maps, Dashboard UI)
-   ├─ src/app/favorites/     (Trang quản lý yêu thích)
-   ├─ src/app/compare/       (Trang so sánh thành phố)
-   ├─ src/app/widget/        (Trang tạo mã iframe nhúng)
-   ├─ src/app/auth/          (Trang đăng nhập / đăng ký)
-   └─ public/sw.js           (Service Worker — Push Notification)
-        ↓
-[🔐 NEXTAUTH MIDDLEWARE — SESSION & JWT]
-        ↓
-[⚙️ BACKEND API LAYER — SERVER SIDE]
-   ├─ /api/weather           → OpenWeatherMap + Việt hóa 50+ mô tả
-   ├─ /api/weather-summary   → GPT-4o-mini + Fallback nội bộ
-   ├─ /api/ai-planner        → GPT JSON Mode + Fallback điểm số
-   ├─ /api/history           → Open-Meteo (30 ngày miễn phí)
-   ├─ /api/favorites         → CRUD MongoDB (bảo mật NextAuth)
-   └─ /api/auth/[...nextauth]→ Đăng ký / Đăng nhập + bcrypt
-        ↓
-[🗄️ DATABASE — MONGODB ATLAS]
-   └─ Collection: users { embedded favorites[] }</code></pre>
-    </section>
+        <section>
+            <h2>04. Checklist Hoàn Thành (19/19)</h2>
+            <ul>
+                <li>Tra cứu thời tiết & Autocomplete</li>
+                <li>Dự báo 5 ngày & Biểu đồ 24h</li>
+                <li>Tóm tắt AI tiếng Việt (GPT)</li>
+                <li>AI Cố Vấn Chuyến Đi (Planner)</li>
+                <li>Bản đồ thời tiết 6 lớp đa năng</li>
+                <li>Lịch sử 30 ngày & Biểu đồ Recharts</li>
+                <li>Authentication (bcrypt + JWT)</li>
+                <li>Quản lý Yêu thích trên Cloud</li>
+                <li>Push Notification cảnh báo bão</li>
+                <li>Chế độ So sánh 2 thành phố</li>
+                <li>Widget nhúng Iframe đa theme</li>
+                <li>Việt hóa 100% giao diện</li>
+                <li>Hiệu ứng khí quyển Atmosphere</li>
+                <li>Dynamic Background theo giờ</li>
+                <li>Responsive Design (Smartphone → 4K)</li>
+                <li>11 API Routes server-side</li>
+                <li>MongoDB Atlas integration</li>
+                <li>AQI / UV / Phấn hoa / Lái xe data</li>
+                <li>Smart Fallback System 100%</li>
+            </ul>
+        </section>
 
-    <!-- 6. QUY TRÌNH PHÁT TRIỂN -->
-    <section id="process">
-        <h2>06. Cách Thực Hiện — Quy Trình Phát Triển</h2>
-        <p>Dự án thực hiện theo mô hình <strong>Agile 5 Sprint</strong>, mỗi sprint tập trung vào một nhóm tính năng cụ thể:</p>
-        <br>
+        <section>
+            <h2>05. Giới hạn & Roadmap</h2>
+            <p><strong>Giới hạn:</strong> Push Notification mới chỉ hoạt động ở phía client. Cần hỗ trợ OneCall API v3 để lấy UV chính xác hơn từ vệ tinh.</p>
+            <p><strong>Roadmap:</strong> Phát triển phiên bản Mobile App (React Native), tích hợp Server-side Push và hệ thống quản lý Profile người dùng nâng cao.</p>
+        </section>
 
-        <div class="sprint sprint-1">
-            <div class="sprint-title">Sprint 1 — Foundation &amp; Core UI (Tuần 1–2)</div>
-            <div class="sprint-body">Khởi tạo Next.js 16 + TypeScript + Tailwind. Thiết kế Glassmorphism UI. Tích hợp OpenWeatherMap API, component tra cứu thời tiết, dự báo 5 ngày. Cài đặt Framer Motion cho animation khí quyển (mưa, tuyết, mây). Xây dựng bảng Việt hóa 50+ cụm từ.</div>
-        </div>
-
-        <div class="sprint sprint-2">
-            <div class="sprint-title">Sprint 2 — Authentication &amp; Database (Tuần 3)</div>
-            <div class="sprint-body">Cấu hình MongoDB Atlas + kết nối Mongoose. Thiết kế User Schema với embedded favorites[]. Tích hợp NextAuth.js Credentials Provider + JWT. Triển khai mã hóa bcrypt. Bảo vệ API Routes bằng getServerSession().</div>
-        </div>
-
-        <div class="sprint sprint-3">
-            <div class="sprint-title">Sprint 3 — Data &amp; Localization (Tuần 4)</div>
-            <div class="sprint-body">Tích hợp Open-Meteo API lấy lịch sử 30 ngày miễn phí. Xây dựng biểu đồ Recharts (Area Chart 24h, Bar Chart 30 ngày). Tích hợp Leaflet + 6 tile layer thời tiết. Hoàn thiện 100% Việt hóa giao diện và dữ liệu API.</div>
-        </div>
-
-        <div class="sprint sprint-4">
-            <div class="sprint-title">Sprint 4 — AI Integration &amp; Reliability (Tuần 5)</div>
-            <div class="sprint-body">Tích hợp OpenAI SDK GPT-4o-mini để sinh tóm tắt thời tiết tự nhiên. Xây dựng AI Planner với JSON Mode. Phát triển hệ thống Fallback nội bộ (aiSummary.ts) — tự sinh nội dung khi OpenAI không khả dụng. Kiểm tra toàn diện các edge case.</div>
-        </div>
-
-        <div class="sprint sprint-5">
-            <div class="sprint-title">Sprint 5 — Ecosystem &amp; Advanced (Tuần 6)</div>
-            <div class="sprint-body">Xây dựng Trang Favorites (/favorites), Compare (/compare), Widget (/widget). Triển khai Web Push Notification qua Service Worker. Responsive Design Mobile → 4K. Đẩy code GitHub, quay video demo, hoàn thiện tài liệu.</div>
-        </div>
-    </section>
-
-    <!-- 7. TÍNH NĂNG -->
-    <section id="features">
-        <h2>07. Tính Năng Chi Tiết</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <div class="feature-title">Tra Cứu Thời Tiết</div>
-                <div class="feature-desc">OpenWeatherMap API, Autocomplete địa danh, dự báo 5 ngày, chỉ số AQI/UV/Phấn hoa, Việt hóa 50+ mô tả tự động.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <div class="feature-title">AI Summary</div>
-                <div class="feature-desc">GPT-4o-mini sinh đoạn tóm tắt ~80 từ tiếng Việt tự nhiên. Fallback nội bộ đảm bảo 100% uptime.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗺️</div>
-                <div class="feature-title">AI Planner</div>
-                <div class="feature-desc">Nhập kế hoạch → AI trả về điểm an toàn, gợi ý trang phục và khung giờ vàng xuất phát (JSON Mode).</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⭐</div>
-                <div class="feature-title">Yêu Thích</div>
-                <div class="feature-desc">Tài khoản bảo mật bcrypt + JWT. Lưu địa điểm vào MongoDB. Trang /favorites chuyên biệt với giao diện lưới.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <div class="feature-title">Lịch Sử 30 Ngày</div>
-                <div class="feature-desc">Open-Meteo API miễn phí cung cấp nhiệt độ &amp; lượng mưa 30 ngày qua. Biểu đồ Area &amp; Bar Chart (Recharts).</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <div class="feature-title">Bản Đồ 6 Lớp</div>
-                <div class="feature-desc">Leaflet tích hợp 6 tile layer: Radar mưa, Nhiệt độ, Gió, Mây, Áp suất, Lượng mưa. Click xem vị trí bất kỳ.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔔</div>
-                <div class="feature-title">Push Notification</div>
-                <div class="feature-desc">Service Worker cảnh báo mưa/bão chủ động khi xác suất mưa > 70%. Giới hạn thông minh 1 lần/30 phút.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚖️</div>
-                <div class="feature-title">So Sánh Thành Phố</div>
-                <div class="feature-desc">Nhập 2 thành phố → so sánh song song tất cả chỉ số với bảng chấm điểm tự động.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧩</div>
-                <div class="feature-title">Widget Nhúng</div>
-                <div class="feature-desc">Sinh mã &lt;iframe&gt; sẵn sàng nhúng vào bất kỳ website nào với 3 theme: Ocean, Forest, Sunset.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. KẾT QUẢ -->
-    <section id="results">
-        <h2>08. Kết Quả Đạt Được</h2>
-        <ul class="checklist">
-            <li><span class="check">✓</span> Tra cứu thời tiết toàn cầu &amp; Autocomplete địa danh</li>
-            <li><span class="check">✓</span> Dự báo 5 ngày &amp; Biểu đồ nhiệt độ 24h</li>
-            <li><span class="check">✓</span> Chỉ số sức khỏe: AQI, UV Index, Phấn hoa</li>
-            <li><span class="check">✓</span> <strong>Tóm tắt AI tiếng Việt (GPT-4o-mini + Fallback nội bộ)</strong></li>
-            <li><span class="check">✓</span> <strong>AI Cố Vấn Chuyến Đi — Điểm an toàn, trang phục, giờ vàng</strong></li>
-            <li><span class="check">✓</span> Smart Fallback — hoạt động 100% khi không có OpenAI</li>
-            <li><span class="check">✓</span> Bản đồ 6 lớp dữ liệu thời tiết tương tác (Leaflet)</li>
-            <li><span class="check">✓</span> Lịch sử 30 ngày (Open-Meteo) &amp; Biểu đồ Recharts</li>
-            <li><span class="check">✓</span> Đăng ký / Đăng nhập bảo mật (NextAuth + bcrypt)</li>
-            <li><span class="check">✓</span> 11 API Routes server-side &amp; MongoDB Atlas</li>
-            <li><span class="check">✓</span> <strong>Trang Quản lý Yêu Thích chuyên biệt (/favorites)</strong></li>
-            <li><span class="check">✓</span> Push Notification cảnh báo thời tiết xấu (Service Worker)</li>
-            <li><span class="check">✓</span> So sánh 2 thành phố song song (/compare)</li>
-            <li><span class="check">✓</span> Widget nhúng Iframe 3 theme (/widget)</li>
-            <li><span class="check">✓</span> Việt hóa 100% giao diện và dữ liệu API</li>
-            <li><span class="check">✓</span> Glassmorphism Design — Responsive Mobile → 4K</li>
-            <li><span class="check">✓</span> Atmosphere Effects — Dynamic background theo thời gian</li>
-            <li><span class="check">✓</span> Source code đẩy lên GitHub public repository</li>
-            <li><span class="check">✓</span> Video Demo quay và đăng tải YouTube</li>
-        </ul>
-
-        <blockquote>"Hoàn thành 19/19 tính năng mục tiêu (100%). Ứng dụng có tính ổn định cao nhờ hệ thống Fallback thông minh, thiết kế Glassmorphism hiện đại và trải nghiệm người dùng mượt mà, hoàn toàn bằng tiếng Việt."</blockquote>
-    </section>
-
-    <!-- 9. GIỚI HẠN & ROADMAP -->
-    <section id="roadmap">
-        <h2>09. Giới Hạn &amp; Hướng Phát Triển</h2>
-        <h3>Giới hạn hiện tại</h3>
-        <div class="limit-item">
-            <div class="limit-title">OpenAI Quota</div>
-            Free tier có giới hạn tokens/tháng → Fallback đã xử lý; nâng cấp credit khi cần.
-        </div>
-        <div class="limit-item">
-            <div class="limit-title">Push Notification chỉ Client-side</div>
-            Service Worker không có server trigger → Cần tích hợp Web-push Protocol + Cron job.
-        </div>
-        <div class="limit-item">
-            <div class="limit-title">UV Index tính gần đúng</div>
-            Không dùng OneCall API v3 (tốn phí) → Nâng cấp OpenWeather OneCall v3.
-        </div>
-
-        <h3>Roadmap Q2–Q4 2026</h3>
-        <div class="roadmap-item"><span class="version-tag">v3.2</span><span style="color:#cbd5e1;">Server-side Push Notification với Web-push Protocol + Cron job định kỳ.</span></div>
-        <div class="roadmap-item"><span class="version-tag">v3.3</span><span style="color:#cbd5e1;">Nâng cấp OpenWeather OneCall v3 — UV Index thực từ dữ liệu vệ tinh.</span></div>
-        <div class="roadmap-item"><span class="version-tag">v3.4</span><span style="color:#cbd5e1;">Ứng dụng Mobile (React Native) sử dụng chung hệ thống API Backend.</span></div>
-        <div class="roadmap-item"><span class="version-tag">v3.5</span><span style="color:#cbd5e1;">Trang Profile nâng cao + Dark/Light Mode toggle toàn ứng dụng.</span></div>
-        <div class="roadmap-item"><span class="version-tag">v4.0</span><span style="color:#cbd5e1;">Mô hình AI tự huấn luyện dự báo thời tiết cục bộ cho các vùng Việt Nam.</span></div>
-    </section>
-
-    <!-- 10. CÀI ĐẶT -->
-    <section id="setup">
-        <h2>10. Hướng Dẫn Cài Đặt</h2>
-        <pre><code># 1. Clone repository
-git clone https://github.com/1721031063-PPB/DoAnGiuaKy.git
-cd skycast-ai
-
-# 2. Cài đặt dependencies
-npm install
-
-# 3. Cấu hình môi trường (.env.local)
-NEXT_PUBLIC_OPENWEATHER_API_KEY=your_key
-MONGODB_URI=mongodb+srv://...
-NEXTAUTH_SECRET=your_secret
-NEXTAUTH_URL=http://localhost:3000
-OPENAI_API_KEY=your_openai_key    # Tùy chọn — có Fallback
-
-# 4. Chạy phát triển
-npm run dev
-# → http://localhost:3000</code></pre>
-    </section>
-
-    <footer>
-        SKYCAST AI — Báo Cáo Dự Án v3.1<br>
-        Phạm Phước Bình — MSSV: 1721031063 — Chuyên Đề Phát Triển Phần Mềm<br>
-        © April 2026
-    </footer>
-</div>
+        <footer>
+            SKYCAST AI — Báo Cáo Dự Án v3.1<br>
+            Phạm Phước Bình — 1721031063 — April 2026
+        </footer>
+    </div>
 </body>
 </html>
