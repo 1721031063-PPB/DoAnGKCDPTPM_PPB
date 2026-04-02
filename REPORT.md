@@ -11,7 +11,8 @@
 > **Sản phẩm:** Ứng dụng Thời tiết Thông minh tích hợp AI  
 > **Phiên bản:** 3.1 Full-Stack  
 > **Cập nhật:** 02/04/2026  
-> **GitHub:** [https://github.com/1721031063-PPB/DoAnGiuaKy.git](https://github.com/1721031063-PPB/DoAnGiuaKy.git)  
+> **GitHub:** [https://github.com/1721031063-PPB/DoAnGiuaKy](https://github.com/1721031063-PPB/DoAnGiuaKy)  
+> **Video Demo:** [https://youtu.be/V6vfWKGXHR0](https://youtu.be/V6vfWKGXHR0)  
 
 ---
 

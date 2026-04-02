@@ -4,7 +4,8 @@
 **Phiên bản:** v3.1 (Tháng 4/2026)  
 **Sinh viên thực hiện:** Phạm Phước Bình — 1721031063  
 **Môn học:** Chuyên Đề Phát Triển Phần Mềm  
-**GitHub Repository:** [https://github.com/1721031063-PPB/DoAnGiuaKy.git](https://github.com/1721031063-PPB/DoAnGiuaKy.git)  
+**GitHub Repository:** [https://github.com/1721031063-PPB/DoAnGiuaKy](https://github.com/1721031063-PPB/DoAnGiuaKy)  
+**Video Demo:** [https://youtu.be/V6vfWKGXHR0](https://youtu.be/V6vfWKGXHR0)  
 
 ---
 

@@ -1,6 +1,7 @@
 # 🌤️ SKYCAST AI — Your Smart Weather Companion
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/1721031063-PPB/DoAnGiuaKy.git)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/1721031063-PPB/DoAnGiuaKy)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo-red?logo=youtube)](https://youtu.be/V6vfWKGXHR0)
 [![Next.js](https://img.shields.io/badge/Next.js-16.1.7-black?logo=next.js)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Powered-47A248?logo=mongodb)](https://www.mongodb.com/)
