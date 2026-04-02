@@ -2,7 +2,7 @@
 
 > **Phiên bản:** 3.1 Full-Stack + Advanced Features  
 > **Cập nhật:** 02/04/2026  
-> **GitHub:** [https://github.com/1721031063-PPB/DoAnGiuaKy.git](https://github.com/1721031063-PPB/DoAnGiuaKy.git)  
+> **GitHub:** [https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB.git](https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB.git)  
 > **Framework:** Next.js 16.1.7 (App Router + Turbopack)  
 > **Trạng thái:** ✅ Hoàn thành — 19/19 tính năng  
 > **Database:** MongoDB (localhost:27017/skycast)  

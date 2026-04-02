@@ -9,7 +9,7 @@
 
 # 🌤️ SKYCAST AI — Trợ Lý Thời Tiết Thông Minh (v3.1)
 
-> **GitHub:** [https://github.com/1721031063-PPB/DoAnGiuaKy](https://github.com/1721031063-PPB/DoAnGiuaKy)  
+> **GitHub:** [https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB](https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB)  
 > **Video Demo:** [https://youtu.be/V6vfWKGXHR0](https://youtu.be/V6vfWKGXHR0)  
 
 ---

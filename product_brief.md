@@ -1,7 +1,7 @@
 # SKYCAST AI — Product Brief
 
 **Ngày:** 02/04/2026 | **Phiên bản:** 3.1 | **Trạng thái:** Hoàn thành  
-**GitHub:** [https://github.com/1721031063-PPB/DoAnGiuaKy.git](https://github.com/1721031063-PPB/DoAnGiuaKy.git)  
+**GitHub:** [https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB.git](https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB.git)  
 
 ---
 

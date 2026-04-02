@@ -4,7 +4,7 @@
 **Phiên bản:** v3.1 (Phát hành Tháng 4/2026)  
 **Sinh viên thực hiện:** Phạm Phước Bình — MSSV: 1721031063  
 **Môn học:** Chuyên Đề Phát Triển Phần Mềm  
-**GitHub Repository:** [https://github.com/1721031063-PPB/DoAnGiuaKy](https://github.com/1721031063-PPB/DoAnGiuaKy)  
+**GitHub Repository:** [https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB](https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB)  
 **Video Demo:** [https://youtu.be/V6vfWKGXHR0](https://youtu.be/V6vfWKGXHR0)  
 
 ---
@@ -310,7 +310,7 @@ Sử dụng **Embedded Data Pattern** để tối ưu tốc độ đọc:
 
 ```bash
 # 1. Tải source code
-git clone https://github.com/1721031063-PPB/DoAnGiuaKy.git
+git clone https://github.com/1721031063-PPB/DoAnGKCDPTPM_PPB.git
 
 # 2. Cài đặt thư viện
 npm install
