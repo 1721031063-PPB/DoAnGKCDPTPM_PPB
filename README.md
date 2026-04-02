@@ -10,38 +10,44 @@
 
 ---
 
-## ✨ Tính Năng Nổi Bật (Key Features)
+## ✨ Tính Năng Dự Án (Project Features)
 
-### 🤖 Trí Tuệ Nhân Tạo (AI-Powered)
-- **Tóm tắt AI (Weather Summary):** GPT-4o-mini tóm tắt tình hình thời tiết trong ~80 từ tiếng Việt cực kỳ dễ hiểu.
-- **Cố vấn Chuyến đi (AI Trip Planner):** Phân tích kế hoạch của bạn để đưa ra điểm số an toàn, gợi ý trang phục và khung giờ vàng xuất phát.
-- **Smart Fallback:** Hệ thống tự động chuyển sang thuật toán nội bộ khi API OpenAI gặp sự cố, đảm bảo app luôn hoạt động 24/7.
+### 🖥️ Frontend (Giao diện người dùng)
+- **Glassmorphism UI:** Thiết kế hiện đại, mượt mà với hiệu ứng làm mờ và trong suốt.
+- **Atmosphere Effects:** Hiệu ứng mưa, tuyết, mây động theo điều kiện thời tiết thực tế (Framer Motion).
+- **Interactive Maps:** Bản đồ radar 6 lớp (Rain, Temp, Wind, Clouds, Pressure, Radar) tích hợp Leaflet.
+- **Data Visualization:** Biểu đồ nhiệt độ 24h và lịch sử 30 ngày trực quan (Recharts).
+- **Responsive Design:** Tối ưu hóa trải nghiệm trên mọi thiết bị (Mobile, Tablet, Desktop).
+- **Push Notifications:** Cảnh báo thời tiết xấu trực tiếp trên trình duyệt qua Service Worker.
+- **Embedded Widgets:** Cung cấp iframe với 3 theme màu sắc để nhúng vào website khác.
 
-### 📊 Trực Quan Hóa Dữ Liệu (Data Visualization)
-- **Bản đồ Radar 6 lớp:** Tương tác với các lớp dữ liệu: Radar mưa, Nhiệt độ, Gió, Mây, Áp suất và Lượng mưa.
-- **Biểu đồ Hourly:** Theo dõi biến động nhiệt độ 24h qua biểu đồ Area trực quan.
-- **Lịch sử 30 ngày:** Phân tích dữ liệu lịch sử nhiệt độ và lượng mưa (Open-Meteo).
-
-### 👤 Cá Nhân Hóa (Personalization)
-- **Hệ thống Tài khoản:** Đăng ký/Đăng nhập bảo mật với NextAuth & bcrypt.
-- **Địa điểm Yêu thích:** Lưu và quản lý các địa điểm quan tâm trực tiếp trên Cloud (MongoDB).
-- **Trang Favorites:** Giao diện quản lý riêng biệt cho các địa điểm đã lưu.
-
-### 🧩 Tiện Ích Mở Rộng (Advanced Features)
-- **So sánh Song song:** So sánh thời tiết giữa 2 thành phố bất kỳ để đưa ra lựa chọn tốt nhất.
-- **Widget Nhúng:** Cung cấp iframe với 3 theme màu sắc để nhúng vào website cá nhân của bạn.
-- **Push Notification:** Cảnh báo mưa bão ngay lập tức qua trình duyệt (Service Worker).
+### ⚙️ Backend (Xử lý hệ thống)
+- **AI Integration:** Tích hợp GPT-4o-mini để tóm tắt thời tiết và cố vấn lịch trình chuyến đi.
+- **Smart Fallback:** Hệ thống tự động chuyển sang thuật toán nội bộ khi OpenAI lỗi hoặc hết quota.
+- **Authentication:** Hệ thống đăng ký/đăng nhập bảo mật với NextAuth.js và mã hóa bcrypt.
+- **Database Management:** Lưu trữ và quản lý danh sách địa điểm yêu thích (Favorites) trên MongoDB.
+- **Multi-API Orchestration:** Kết nối đồng bộ nhiều nguồn dữ liệu (OpenWeatherMap, Open-Meteo, WAQI, Ambee).
+- **Localization:** Tự động dịch và chuẩn hóa dữ liệu thời tiết sang tiếng Việt 100%.
 
 ---
 
 ## 🛠️ Stack Công Nghệ (Tech Stack)
 
-- **Frontend:** Next.js 16 (App Router), React 19, TypeScript.
-- **Styling:** Tailwind CSS (Glassmorphism), Framer Motion (Hiệu ứng khí hậu động).
-- **Backend:** Next.js API Routes (Node.js).
+### 🎨 Frontend Stack
+- **Framework:** Next.js 16 (App Router), React 19.
+- **Language:** TypeScript (Type-safe).
+- **Styling:** Tailwind CSS.
+- **Animations:** Framer Motion.
+- **Charts:** Recharts.
+- **Maps:** Leaflet & React-Leaflet.
+
+### 🔌 Backend Stack
+- **Runtime:** Node.js (Next.js API Routes).
 - **Database:** MongoDB & Mongoose.
-- **Authentication:** NextAuth.js (JWT & Credentials).
-- **APIs:** OpenWeatherMap, Open-Meteo, RainViewer, OpenAI GPT-4o-mini.
+- **Auth:** NextAuth.js (JWT Strategy).
+- **Security:** bcryptjs (Mã hóa mật khẩu).
+- **AI:** OpenAI SDK (GPT-4o-mini).
+- **External APIs:** OpenWeatherMap, Open-Meteo, RainViewer, WAQI, Ambee.
 
 ---
 
