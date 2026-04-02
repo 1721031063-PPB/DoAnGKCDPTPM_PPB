@@ -1,9 +1,10 @@
 # SKYCAST AI — BÁO CÁO TỔNG HỢP DỰ ÁN (ULTIMATE REPORT)
 
 **Tên dự án:** SKYCAST AI — Trợ lý Thời tiết Thông minh
-**Phiên bản:** v3.1 (Tháng 4/2026)
-**Sinh viên thực hiện:** Phạm Phước Bình — 1721031063
-**Môn học:** Chuyên Đề Phát Triển Phần Mềm
+**Phiên bản:** v3.1 (Tháng 4/2026)  
+**Sinh viên thực hiện:** Phạm Phước Bình — 1721031063  
+**Môn học:** Chuyên Đề Phát Triển Phần Mềm  
+**GitHub Repository:** [https://github.com/1721031063-PPB/DoAnGiuaKy.git](https://github.com/1721031063-PPB/DoAnGiuaKy.git)  
 
 ---
 

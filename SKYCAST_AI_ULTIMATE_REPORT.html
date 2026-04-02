@@ -1,655 +1,302 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SKYCAST AI — Báo Cáo Tổng Hợp Dự Án v3.1</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.75; color: #1e293b; background: #f8fafc; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYCAST AI — ULTIMATE REPORT (v3.1)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #6366f1;
+            --accent: #f472b6;
+            --bg: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text: #f9fafb;
+            --text-secondary: #9ca3af;
+        }
 
-    /* ── COVER ── */
-    .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); color: white; padding: 60px 80px; page-break-after: always; position: relative; overflow: hidden; }
-    .cover::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%); }
-    .cover::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%); }
-    .cover-badge { display: inline-block; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: #7dd3fc; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 28px; width: fit-content; }
-    .cover h1 { font-size: 56px; font-weight: 800; letter-spacing: -1px; background: linear-gradient(90deg, #7dd3fc, #a5b4fc); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
-    .cover .subtitle { font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 48px; }
-    .cover-meta { display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
-    .cover-meta div { display: flex; flex-direction: column; gap: 4px; }
-    .cover-meta .label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-    .cover-meta .value { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); }
-    .cover-student { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .cover-student .label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-    .cover-student .value { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.9); }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(244, 114, 182, 0.1) 0px, transparent 50%);
+            color: var(--text);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+        }
 
-    /* ── CONTENT ── */
-    .content { max-width: 900px; margin: 0 auto; padding: 48px 60px; }
-    .page-break { page-break-before: always; padding-top: 48px; }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            position: relative;
+        }
 
-    /* Section headers */
-    .section-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: white; border-radius: 8px; font-size: 13px; font-weight: 700; margin-right: 12px; flex-shrink: 0; }
-    h2 { font-size: 22px; font-weight: 700; color: #0f172a; margin: 44px 0 18px; display: flex; align-items: center; }
-    h2:first-of-type { margin-top: 0; }
-    h3 { font-size: 15px; font-weight: 600; color: #334155; margin: 28px 0 12px; padding-left: 14px; border-left: 3px solid #0ea5e9; }
-    h4 { font-size: 13px; font-weight: 600; color: #475569; margin: 16px 0 8px; }
-    p { margin-bottom: 12px; color: #475569; }
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-    /* Cards */
-    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
-    .card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
-    .card-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 20px 0; }
-    .card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .card .card-icon { font-size: 28px; margin-bottom: 8px; }
-    .card .card-title { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .card .card-value { font-size: 15px; font-weight: 600; color: #0f172a; }
-    .card .card-desc { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.5; }
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
 
-    /* Tables */
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
-    th { background: #f1f5f9; color: #374151; font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid #e2e8f0; }
-    td { padding: 9px 14px; border-bottom: 1px solid #f1f5f9; color: #4b5563; }
-    tr:hover td { background: #f8fafc; }
-    code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 11.5px; font-family: 'Courier New', monospace; color: #0369a1; }
+        .metadata {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
 
-    /* Stats bar */
-    .stats { display: flex; gap: 24px; background: linear-gradient(135deg, #0f172a, #1e3a5f); color: white; border-radius: 12px; padding: 24px; margin: 20px 0; }
-    .stat { display: flex; flex-direction: column; align-items: center; flex: 1; }
-    .stat .num { font-size: 32px; font-weight: 800; background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat .lbl { font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 4px; }
+        .metadata div {
+            background: var(--glass);
+            padding: 6px 16px;
+            border-radius: 99px;
+            border: 1px solid var(--glass-border);
+        }
 
-    /* Timeline */
-    .timeline { margin: 20px 0; }
-    .timeline-item { display: flex; gap: 16px; margin-bottom: 20px; position: relative; }
-    .timeline-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; font-weight: 700; }
-    .dot-1 { background: #dbeafe; color: #1d4ed8; } .dot-2 { background: #d1fae5; color: #065f46; } .dot-3 { background: #fef3c7; color: #92400e; } .dot-4 { background: #ede9fe; color: #5b21b6; } .dot-5 { background: #fce7f3; color: #9d174d; }
-    .timeline-content h4 { font-size: 13px; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
-    .timeline-content p { font-size: 12px; color: #64748b; margin: 0; }
-    .tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin: 2px; font-weight: 500; }
-    .tag-green { background: #dcfce7; color: #166534; } .tag-purple { background: #f3e8ff; color: #7e22ce; } .tag-orange { background: #fff7ed; color: #c2410c; } .tag-red { background: #fef2f2; color: #dc2626; }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
 
-    /* Architecture box */
-    .arch-box { background: #0f172a; color: #e2e8f0; border-radius: 12px; padding: 28px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.9; margin: 16px 0; overflow-x: auto; }
-    .arch-box .accent { color: #38bdf8; } .arch-box .green { color: #4ade80; } .arch-box .yellow { color: #fbbf24; } .arch-box .red { color: #f87171; }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    /* Checklist */
-    .checklist { list-style: none; margin: 16px 0; }
-    .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 12.5px; color: #374151; }
-    .check { color: #16a34a; font-size: 14px; flex-shrink: 0; }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-top: 2rem;
+        }
 
-    /* Callout */
-    .callout { background: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; font-size: 12.5px; color: #1e40af; }
-    .callout-warn { background: #fff7ed; border-left-color: #f97316; color: #9a3412; }
-    .callout-success { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
-    .callout-purple { background: #faf5ff; border-left-color: #a855f7; color: #6b21a8; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
 
-    /* TOC */
-    .toc { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px 40px; margin: 20px 0; }
-    .toc h3 { border: none; padding: 0; margin: 0 0 16px; font-size: 18px; color: #0f172a; }
-    .toc ol { padding-left: 0; counter-reset: toc; }
-    .toc ol li { list-style: none; padding: 8px 0; border-bottom: 1px dashed #e2e8f0; font-size: 13px; color: #475569; counter-increment: toc; }
-    .toc ol li::before { content: "Chương " counter(toc) " — "; font-weight: 600; color: #0ea5e9; }
+        .grid-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+        }
 
-    /* Footer */
-    .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+        .grid-item h4 {
+            margin: 0 0 10px 0;
+            color: #f472b6;
+        }
 
-    /* Print */
-    @media print {
-      body { background: white; font-size: 12px; }
-      .cover { min-height: 100vh; }
-      .content { padding: 32px 48px; }
-      .no-print { display: none; }
-      .card, .toc { break-inside: avoid; }
-    }
-    @page { margin: 15mm; size: A4; }
-  </style>
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.05);
+            text-align: left;
+            padding: 15px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            font-size: 0.95rem;
+        }
+
+        .usp-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .usp-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .usp-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34d399;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #000;
+            padding: 25px;
+            border-radius: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            border: 1px solid #1f2937;
+            margin: 20px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 6px;
+            background: #1e3a8a;
+            color: #60a5fa;
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 100px;
+            padding-bottom: 50px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px;
+            }
+            .logo-text {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo-text">SKYCAST AI</div>
+            <p style="font-size: 1.2rem; margin-top: 10px; font-weight: 300;">Trợ lý Thời tiết Thông minh — Ultimate Project Report</p>
+            <div class="metadata">
+                <div>v3.1 Premium Edition</div>
+                <div>Phạm Phước Bình (1721031063)</div>
+                <div>Chuyên Đề Phát Triển Phần Mềm</div>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="https://github.com/1721031063-PPB/DoAnGiuaKy.git" style="color: #60a5fa; text-decoration: none; border: 1px solid #60a5fa; padding: 5px 15px; border-radius: 99px; font-size: 0.8rem;">
+                    GitHub Repository
+                </a>
+            </div>
+        </header>
 
-<!-- ═══════════════════════ COVER ═══════════════════════ -->
-<div class="cover">
-  <div class="cover-badge">🎓 Báo Cáo Dự Án — Chuyên Đề Phát Triển Phần Mềm</div>
-  <h1>SKYCAST AI</h1>
-  <p class="subtitle">Ứng dụng Thời tiết Thông minh Tích hợp Trí tuệ Nhân tạo</p>
-  <div class="cover-meta">
-    <div><span class="label">Phiên bản</span><span class="value">3.1 Full-Stack</span></div>
-    <div><span class="label">Cập nhật</span><span class="value">02/04/2026</span></div>
-    <div><span class="label">Framework</span><span class="value">Next.js 16.1.7</span></div>
-    <div><span class="label">Trạng thái</span><span class="value" style="color:#4ade80">✓ Hoàn Thành 19/19</span></div>
-  </div>
-  <div class="cover-student">
-    <div style="display:flex; gap:64px; margin-top:12px;">
-      <div><span class="label">Sinh viên thực hiện</span><br><span class="value">Phạm Phước Bình</span></div>
-      <div><span class="label">MSSV</span><br><span class="value">1721031063</span></div>
-      <div><span class="label">Môn học</span><br><span class="value">Chuyên đề Phát triển Phần mềm</span></div>
+        <section class="card">
+            <h2>01. Giới Thiệu Dự Án</h2>
+            <p><strong>SKYCAST AI</strong> không chỉ là một ứng dụng xem thời tiết thông thường. Đây là một hệ sinh thái chăm sóc cuộc sống người dùng thông qua dữ liệu. Bằng cách kết hợp <strong>Next.js 16</strong> và <strong>Generative AI</strong>, dự án biến các chỉ số khí tượng phức tạp thành những bản tin ngắn gọn, dễ hiểu và những lời khuyên trang phục thực tế cho hành trình của bạn.</p>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4>100% Việt Hóa</h4>
+                    <p>Mọi thuật ngữ, mô tả thời tiết từ API quốc tế đều được dịch sang ngôn ngữ tự nhiên tiếng Việt.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>AI-Centric</h4>
+                    <p>AI không phải module phụ. Nó là "trái tim" cung cấp tóm tắt và cố vấn hành trình cho người dùng.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>Full-Stack Cloud</h4>
+                    <p>Sử dụng MongoDB và NextAuth để đảm bảo dữ liệu người dùng được đồng bộ hóa mọi nơi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>02. Stack Công Nghệ & APIs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Công Nghệ / API</th>
+                        <th>Vai Trò Trong Hệ Thống</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Next.js 16 (App Router)</strong></td>
+                        <td>Framework chính xử lý SSR, API Routes và Streaming.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tailwind CSS (Glassmorphism)</strong></td>
+                        <td>Thiết kế giao diện hiện đại với hiệu ứng phản chiếu và làm mờ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MongoDB + Mongoose</strong></td>
+                        <td>Quản lý người dùng và danh sách địa điểm yêu thích.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OpenAI GPT-4o-mini</strong></td>
+                        <td>Xử lý ngôn ngữ tự nhiên để tóm tắt và lập kế hoạch du lịch.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Open-Meteo & RainViewer</strong></td>
+                        <td>Nguồn dữ liệu lịch sử và lớp bản đồ radar thời gian thực.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>03. Điểm Nhấn Kiến Trúc (v3.1)</h2>
+            <h3>Giải thuật Smart Fallback</h3>
+            <p>Để đảm bảo độ tin cậy tuyệt đối, hệ thống tích hợp giải thuật <code>generateFallbackSummary()</code>. Khi API OpenAI gặp lỗi hoặc hết hạn, ứng dụng sẽ tự động phân tích dữ liệu nhiệt độ/độ ẩm để sinh ra các câu tóm tắt chuyên nghiệp không kém gì AI thực thụ.</p>
+            
+            <h3>Bản đồ Radar Đa Tầng</h3>
+            <p>Tích hợp 6 lớp tile overlay từ RainViewer và OpenWeatherMap trên nền tảng Leaflet, mang lại cái nhìn bao quát về bão, lượng mưa và nhiệt độ toàn cầu.</p>
+            
+            <h3>Hệ sinh thái Iframe Widget</h3>
+            <p>Cho phép các nhà phát triển khác nhúng Skycast AI vào trang web của họ chỉ với một dòng code, hỗ trợ 3 chủ đề: Light, Dark và Minimal.</p>
+        </section>
+
+        <section class="card">
+            <h2>04. Kết Quả & Kết Luận</h2>
+            <ul class="usp-list">
+                <li>Hoàn thành <strong>19/19</strong> tính năng đề ra từ ban đầu.</li>
+                <li>Hệ thống tài khoản bảo mật với mã hóa <strong>bcrypt</strong> và <strong>NextAuth</strong>.</li>
+                <li>Giao diện responsive mượt mà trên mọi thiết bị (Mobile, Tablet, Desktop).</li>
+                <li>Tích hợp <strong>Push Notification</strong> cảnh báo thời tiết xấu qua Service Worker.</li>
+            </ul>
+            <p style="margin-top: 30px; font-style: italic; color: var(--text-secondary); border-left: 4px solid #3b82f6; padding-left: 20px;">
+                "Dự án v3.1 là minh chứng cho việc kết hợp hài hòa giữa kỹ thuật lập trình backend, tư duy thẩm mỹ frontend và sức mạnh của AI để phục vụ con người."
+            </p>
+        </section>
+
+        <footer>
+            SKYCAST AI — Báo Cáo Cuối Kỳ (v3.1)<br>
+            Phạm Phước Bình — Khoa Công Nghệ Thông Tin<br>
+            © April 2026
+        </footer>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════ CONTENT ═══════════════════════ -->
-<div class="content">
-
-  <!-- Print button -->
-  <div class="no-print" style="text-align:right; margin-bottom:20px;">
-    <button onclick="window.print()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:white;border:none;padding:12px 28px;border-radius:8px;font-size:13px;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;">🖨️ Xuất ra PDF</button>
-  </div>
-
-  <!-- ── MỤC LỤC ── -->
-  <div class="toc">
-    <h3>📋 Mục Lục</h3>
-    <ol>
-      <li>Tổng Quan Sản Phẩm &amp; Chỉ Số Dự Án</li>
-      <li>Vấn Đề &amp; Giải Pháp</li>
-      <li>Đối Tượng Người Dùng &amp; Điểm Khác Biệt (USP)</li>
-      <li>Stack Công Nghệ &amp; External APIs</li>
-      <li>Kiến Trúc Hệ Thống &amp; Cấu Trúc Thư Mục</li>
-      <li>Chi Tiết API Routes (11 Endpoints)</li>
-      <li>Cơ Sở Dữ Liệu — MongoDB Schema</li>
-      <li>Giao Diện &amp; Trải Nghiệm Người Dùng (UX)</li>
-      <li>Đặc Tả Chi Tiết Tính Năng (19 Features)</li>
-      <li>Quy Trình Phát Triển (5 Giai Đoạn)</li>
-      <li>Kết Quả Đạt Được &amp; Checklist</li>
-      <li>Giới Hạn, Hướng Cải Tiến &amp; Roadmap</li>
-    </ol>
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 1 ══════════════ -->
-  <h2><span class="section-num">1</span>Tổng Quan Sản Phẩm</h2>
-  <p><strong>SKYCAST AI</strong> là ứng dụng web thời tiết thế hệ mới, kết hợp dữ liệu thời tiết thực từ API toàn cầu với sức mạnh của trí tuệ nhân tạo (GPT-4o-mini) để cung cấp trải nghiệm thời tiết <strong>cá nhân hóa</strong>, <strong>thông minh</strong> và <strong>thân thiện với người Việt</strong>.</p>
-  <p>Khác biệt với các ứng dụng thời tiết truyền thống chỉ hiển thị số liệu khô khan, SKYCAST AI biến dữ liệu thành <em>trợ lý thời tiết cá nhân</em> — tóm tắt bằng ngôn ngữ tự nhiên, gợi ý trang phục, phân tích giờ vàng xuất phát và cảnh báo sức khỏe toàn diện.</p>
-
-  <div class="stats">
-    <div class="stat"><div class="num">19</div><div class="lbl">Tính năng<br>hoàn thành</div></div>
-    <div class="stat"><div class="num">11</div><div class="lbl">API Routes<br>server-side</div></div>
-    <div class="stat"><div class="num">50+</div><div class="lbl">Mô tả thời tiết<br>đã Việt hóa</div></div>
-    <div class="stat"><div class="num">5</div><div class="lbl">Trang độc lập<br>Dashboard/Favorites<br>Compare/Widget/Auth</div></div>
-    <div class="stat"><div class="num">6</div><div class="lbl">External APIs<br>tích hợp</div></div>
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 2 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">2</span>Vấn Đề &amp; Giải Pháp</h2>
-  <p>Các ứng dụng thời tiết hiện tại trên thị trường tồn tại nhiều hạn chế đáng kể đối với người dùng Việt Nam. SKYCAST AI ra đời để giải quyết toàn bộ những vấn đề này:</p>
-
-  <table>
-    <thead><tr><th>❌ Vấn đề hiện tại</th><th>✅ Giải pháp SKYCAST AI</th></tr></thead>
-    <tbody>
-      <tr><td>Số liệu khô khan, khó hiểu với người dùng phổ thông</td><td>AI tóm tắt ~80 từ thân thiện bằng tiếng Việt tự nhiên</td></tr>
-      <tr><td>Không cá nhân hóa — không gợi ý hành động thiết thực</td><td>AI Cố Vấn: gợi ý trang phục + giờ vàng xuất phát + điểm số an toàn</td></tr>
-      <tr><td>Không có tính năng lưu trữ, theo dõi nhiều địa điểm</td><td>MongoDB lưu danh sách yêu thích theo tài khoản + Trang quản lý riêng</td></tr>
-      <tr><td>Giao diện tiếng Anh, xa lạ với người dùng Việt Nam</td><td>100% Việt hóa, dịch tự động 50+ mô tả thời tiết từ API</td></tr>
-      <tr><td>Thiếu phân tích sức khỏe (AQI, phấn hoa, UV)</td><td>Widget AQI + Phấn hoa Cây/Cỏ + UV Index + cảnh báo theo mức</td></tr>
-      <tr><td>Không có dữ liệu lịch sử để so sánh xu hướng</td><td>Lịch sử 30 ngày miễn phí (Open-Meteo) với 2 loại biểu đồ</td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══════════════ CHƯƠNG 3 ══════════════ -->
-  <h2><span class="section-num">3</span>Đối Tượng Người Dùng &amp; Điểm Khác Biệt</h2>
-
-  <h3>Đối tượng người dùng</h3>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-icon">👤</div>
-      <div class="card-title">Người dùng chính</div>
-      <div class="card-value">Người Việt 18–40 tuổi</div>
-      <div class="card-desc">Sử dụng smartphone/laptop hàng ngày, cần thông tin thời tiết nhanh và dễ hiểu bằng tiếng Việt.</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">💻</div>
-      <div class="card-title">Nhà phát triển</div>
-      <div class="card-value">Developer nhúng Widget</div>
-      <div class="card-desc">Cần nhúng widget thời tiết vào website của họ qua iframe với 3 theme tùy chỉnh.</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">✈️</div>
-      <div class="card-title">Du khách</div>
-      <div class="card-value">Người hay đi du lịch</div>
-      <div class="card-desc">Cần lên kế hoạch chuyến đi dựa trên phân tích AI thông minh về thời tiết điểm đến.</div>
-    </div>
-  </div>
-
-  <h3>5 Điểm khác biệt nổi bật (USP)</h3>
-  <table>
-    <thead><tr><th>#</th><th>USP</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><strong>1</strong></td><td>Hoạt động dù không có OpenAI</td><td>Fallback nội bộ tự sinh câu tiếng Việt từ data thực — app không bao giờ crash</td></tr>
-      <tr><td><strong>2</strong></td><td>Lịch sử 30 ngày miễn phí</td><td>Open-Meteo API — không cần API key, không giới hạn request</td></tr>
-      <tr><td><strong>3</strong></td><td>Nhúng được vào mọi website</td><td>Widget iframe 3 theme (dark/light/minimal) với query params đơn giản</td></tr>
-      <tr><td><strong>4</strong></td><td>Cảnh báo thông minh</td><td>Push Notification giới hạn 1 lần/30 phút — tránh spam người dùng</td></tr>
-      <tr><td><strong>5</strong></td><td>Việt hóa hoàn toàn</td><td>50+ mô tả thời tiết Anh → Việt tự động (few clouds → Ít mây)</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Metrics &amp; KPIs đề xuất</h3>
-  <table>
-    <thead><tr><th>Chỉ số</th><th>Mục tiêu</th></tr></thead>
-    <tbody>
-      <tr><td>Thời gian load trang đầu</td><td>&lt; 2 giây</td></tr>
-      <tr><td>Thời gian response API thời tiết</td><td>&lt; 1.5 giây</td></tr>
-      <tr><td>Uptime</td><td>&gt; 99.5%</td></tr>
-      <tr><td>Tỉ lệ người dùng tạo tài khoản</td><td>&gt; 20%</td></tr>
-      <tr><td>Tỉ lệ lưu yêu thích (trong users đã login)</td><td>&gt; 50%</td></tr>
-    </tbody>
-  </table>
-
-
-  <!-- ══════════════ CHƯƠNG 4 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">4</span>Stack Công Nghệ &amp; External APIs</h2>
-
-  <h3>Core Dependencies</h3>
-  <table>
-    <thead><tr><th>Thư viện</th><th>Phiên bản</th><th>Vai trò</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Next.js</strong></td><td>16.1.7</td><td>Framework Full-Stack (App Router + Turbopack)</td></tr>
-      <tr><td><strong>React</strong></td><td>19.2.4</td><td>UI Library — Server &amp; Client Components</td></tr>
-      <tr><td><strong>TypeScript</strong></td><td>5.7</td><td>Type safety toàn bộ dự án</td></tr>
-      <tr><td><strong>Tailwind CSS</strong></td><td>3.4.4</td><td>Styling — Glassmorphism design system</td></tr>
-      <tr><td><strong>Framer Motion</strong></td><td>11.0</td><td>Animation, hiệu ứng hạt khí hậu động (mưa/mây/tuyết)</td></tr>
-      <tr><td><strong>MongoDB + Mongoose</strong></td><td>9.3</td><td>NoSQL Database — Users, Favorites (Embedded Array)</td></tr>
-      <tr><td><strong>NextAuth</strong></td><td>4.24</td><td>Authentication (JWT + Credentials Provider)</td></tr>
-      <tr><td><strong>bcryptjs</strong></td><td>3.0</td><td>Mã hoá mật khẩu (10 rounds salt)</td></tr>
-      <tr><td><strong>Recharts</strong></td><td>3.8</td><td>Area Chart (nhiệt độ 24h), Bar Chart (lượng mưa)</td></tr>
-      <tr><td><strong>Leaflet / react-leaflet</strong></td><td>1.9 / 5.0</td><td>Bản đồ tương tác đa lớp 6 loại dữ liệu</td></tr>
-      <tr><td><strong>Lucide React</strong></td><td>1.7</td><td>Bộ icon SVG toàn dự án</td></tr>
-      <tr><td><strong>OpenAI SDK</strong></td><td>4.77</td><td>GPT-4o-mini — Tóm tắt &amp; JSON Mode Planner</td></tr>
-    </tbody>
-  </table>
-
-  <h3>External APIs</h3>
-  <table>
-    <thead><tr><th>API</th><th>Mục đích</th><th>Miễn phí?</th></tr></thead>
-    <tbody>
-      <tr><td>OpenWeatherMap</td><td>Thời tiết thực + Geocoding Search</td><td>✅ Free tier (60 calls/min)</td></tr>
-      <tr><td>Open-Meteo</td><td>Lịch sử thời tiết 30 ngày</td><td>✅ Hoàn toàn miễn phí, không cần key</td></tr>
-      <tr><td>RainViewer</td><td>Radar mưa realtime (Leaflet tile layer)</td><td>✅ Miễn phí</td></tr>
-      <tr><td>WAQI</td><td>AQI — Chất lượng không khí</td><td>✅ Free token</td></tr>
-      <tr><td>Ambee</td><td>Phấn hoa (Pollen data — Tree/Grass)</td><td>✅ Free tier</td></tr>
-      <tr><td>OpenAI GPT-4o-mini</td><td>AI tóm tắt + AI Cố Vấn Chuyến Đi</td><td>❌ Tính phí (có Fallback nội bộ)</td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══════════════ CHƯƠNG 5 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">5</span>Kiến Trúc Hệ Thống &amp; Cấu Trúc Thư Mục</h2>
-
-  <h3>Sơ đồ kiến trúc tổng quan</h3>
-  <div class="arch-box">
-<span class="accent">┌─────────────────────────────────────────────────────────────┐</span>
-<span class="accent">│                     NGƯỜI DÙNG (Browser)                    │</span>
-<span class="accent">└─────────────────────────┬───────────────────────────────────┘</span>
-                          │
-<span class="green">┌─────────────────────────▼───────────────────────────────────┐</span>
-<span class="green">│              NEXT.JS FRONTEND (App Router)                   │</span>
-<span class="green">│  Dashboard │ Favorites │ Compare │ Widget │ Auth Pages       │</span>
-<span class="green">│  Components: WeatherDashboard, HourlyChart, MapLayers...    │</span>
-<span class="green">│  Effects: WeatherAtmosphere (Framer Motion particles)       │</span>
-<span class="green">└──────────┬────────┴──────────────────────────────┬──────────┘</span>
-           │                                        │
-<span class="yellow">┌──────────▼────────────────────────────────────────▼──────────┐</span>
-<span class="yellow">│                   API ROUTES (Server-Side)                    │</span>
-<span class="yellow">│  /api/weather       → OpenWeatherMap + Dịch tự động          │</span>
-<span class="yellow">│  /api/weather-summary → GPT-4o-mini + Fallback nội bộ        │</span>
-<span class="yellow">│  /api/ai-planner    → GPT JSON Mode + Fallback thuật toán    │</span>
-<span class="yellow">│  /api/favorites     → MongoDB CRUD (GET/POST/DELETE)         │</span>
-<span class="yellow">│  /api/history       → Open-Meteo 30 ngày                    │</span>
-<span class="yellow">│  /api/auth          → NextAuth + bcrypt + JWT                │</span>
-<span class="yellow">└──────┬─────────────┬──────────────┬─────────────┬────────────┘</span>
-       │             │              │             │
- <span class="accent">OpenWeather</span>    <span class="accent">OpenAI</span>     <span class="accent">Open-Meteo</span>   <span class="green">MongoDB</span>
- <span class="accent">(Thời tiết)</span>  <span class="accent">(GPT-4o)</span>  <span class="accent">(Lịch sử)</span>   <span class="green">(Users/Favs)</span>
-  </div>
-
-  <h3>Cấu trúc thư mục chi tiết</h3>
-  <div class="arch-box">
-<span class="accent">skycast-ai/</span>
-├── <span class="green">public/</span>                        ← [FRONTEND tĩnh] sw.js, images
-│
-├── <span class="green">src/app/</span>
-│   │
-│   ├── <span class="accent">[ 🖥️ FRONTEND - CLIENT SIDE ]</span>
-│   │   ├── <span class="yellow">favorites/</span>             ← Trang quản lý địa điểm yêu thích
-│   │   ├── <span class="yellow">compare/</span>               ← Trang so sánh 2 thành phố
-│   │   ├── <span class="yellow">widget/</span>                ← Trang widget nhúng iframe
-│   │   ├── <span class="yellow">auth/</span>                  ← Đăng nhập / Đăng ký
-│   │   ├── <span class="yellow">components/</span>            ← WeatherDashboard, HourlyChart, MapLayers...
-│   │   ├── <span class="yellow">effects/</span>               ← WeatherAtmosphere (Framer Motion)
-│   │   ├── providers.tsx          ← NextAuth SessionProvider wrapper
-│   │   ├── layout.tsx             ← Root layout (gradient + font)
-│   │   └── page.tsx               ← Entry point trang chủ
-│   │
-│   ├── <span class="accent">[ ⚙️ BACKEND - SERVER SIDE ]</span>
-│   │   ├── <span class="red">api/</span>
-│   │   │   ├── auth/              ← NextAuth [...nextauth] + register
-│   │   │   ├── weather/           ← Fetch OWM + Dịch tiếng Việt
-│   │   │   ├── weather-summary/   ← GPT + Fallback sinh tóm tắt
-│   │   │   ├── ai-planner/        ← GPT JSON Mode + Fallback
-│   │   │   ├── favorites/         ← MongoDB CRUD Endpoints
-│   │   │   └── history/           ← Fetch Open-Meteo 30 ngày
-│   │   ├── <span class="green">lib/</span>
-│   │   │   ├── mongoose.ts        ← Singleton connection pattern
-│   │   │   └── aiSummary.ts       ← Thuật toán Fallback AI
-│   │   └── <span class="green">models/</span>
-│   │       └── User.ts            ← Mongoose Schema
-│
-├── .env.local                     ← API keys & secrets
-└── package.json                   ← Dependencies
-  </div>
-
-  <div class="callout">
-    <strong>💡 Kiến trúc Monolithic:</strong> Toàn bộ Frontend và Backend nằm trong một dự án Next.js duy nhất, sử dụng App Router để phân tách rõ ràng giữa client-side pages và server-side API routes. Điều này giúp đơn giản hóa deployment và tránh lỗi module import giữa các layer.
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 6 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">6</span>Chi Tiết API Routes</h2>
-
-  <h3>POST /api/weather</h3>
-  <p><strong>Mục đích:</strong> Lấy toàn bộ dữ liệu thời tiết hiện tại, dự báo 5 ngày và nhiệt độ 24 giờ.</p>
-  <table>
-    <thead><tr><th>Thuộc tính</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Input</strong></td><td><code>{ city: string }</code></td></tr>
-      <tr><td><strong>Output</strong></td><td><code>{ current, forecast[], hourly[], lat, lon }</code></td></tr>
-      <tr><td><strong>Đặc biệt</strong></td><td>Tự tính UV Index từ % mây + giờ trong ngày; Dịch tự động 50+ mô tả Anh → Việt</td></tr>
-    </tbody>
-  </table>
-  <div class="callout-purple callout">Ví dụ dịch: <code>"few clouds"</code> → <code>"Ít mây"</code> · <code>"thunderstorm"</code> → <code>"Dông"</code> · <code>"light rain"</code> → <code>"Mưa nhẹ"</code> · <code>"overcast clouds"</code> → <code>"Trời u ám"</code></div>
-
-  <h3>POST /api/weather-summary</h3>
-  <p><strong>Mục đích:</strong> Tóm tắt thời tiết bằng ngôn ngữ tự nhiên tiếng Việt (~80 từ).</p>
-  <table>
-    <thead><tr><th>Thuộc tính</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Input</strong></td><td><code>{ city, current, forecast[], health }</code></td></tr>
-      <tr><td><strong>Luồng xử lý</strong></td><td>GPT-4o-mini (nếu có key) → Fallback <code>generateFallbackSummary()</code> tự sinh câu</td></tr>
-      <tr><td><strong>Đảm bảo</strong></td><td>App không bao giờ crash dù OpenAI lỗi hoặc hết quota</td></tr>
-    </tbody>
-  </table>
-
-  <h3>POST /api/ai-planner</h3>
-  <p><strong>Mục đích:</strong> AI Cố Vấn Du Lịch — phân tích kế hoạch người dùng dựa trên thời tiết thực.</p>
-  <table>
-    <thead><tr><th>Thuộc tính</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Input</strong></td><td><code>{ activity, timeDescription, current, forecast }</code></td></tr>
-      <tr><td><strong>Output (JSON Mode)</strong></td><td><code>{ score: 85, outfit: [...], bestTime: "6–8h", advice: "..." }</code></td></tr>
-      <tr><td><strong>Fallback</strong></td><td>Thuật toán tính điểm từ nhiệt độ (gần 25°C = tối ưu) + xác suất mưa</td></tr>
-    </tbody>
-  </table>
-
-  <h3>GET / POST / DELETE /api/favorites</h3>
-  <p><strong>Yêu cầu:</strong> NextAuth Session hợp lệ (trả 401 nếu chưa đăng nhập).</p>
-  <table>
-    <thead><tr><th>Method</th><th>Hành động</th></tr></thead>
-    <tbody>
-      <tr><td><code>GET</code></td><td>Trả về danh sách yêu thích của user hiện tại từ MongoDB</td></tr>
-      <tr><td><code>POST { label, lat, lon }</code></td><td>Thêm địa điểm mới vào embedded favorites array</td></tr>
-      <tr><td><code>DELETE ?label=...</code></td><td>Xoá địa điểm khỏi mảng yêu thích của user</td></tr>
-    </tbody>
-  </table>
-
-  <h3>POST /api/history</h3>
-  <table>
-    <thead><tr><th>Thuộc tính</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Nguồn</strong></td><td>Open-Meteo — Hoàn toàn miễn phí, không cần API key</td></tr>
-      <tr><td><strong>Input</strong></td><td><code>{ lat, lon }</code></td></tr>
-      <tr><td><strong>Output</strong></td><td>Mảng 30 object: <code>{ date, maxTemp, minTemp, precipitation }</code></td></tr>
-    </tbody>
-  </table>
-
-  <h3>Auth Endpoints</h3>
-  <table>
-    <thead><tr><th>Endpoint</th><th>Chi tiết</th></tr></thead>
-    <tbody>
-      <tr><td><code>POST /api/auth/register</code></td><td>Kiểm tra email trùng → Hash bcrypt 10 rounds → Lưu MongoDB</td></tr>
-      <tr><td><code>GET/POST /api/auth/[...nextauth]</code></td><td>JWT Strategy + Credentials Provider + Inject <code>user.id</code> vào token</td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══════════════ CHƯƠNG 7 ══════════════ -->
-  <h2><span class="section-num">7</span>Cơ Sở Dữ Liệu — MongoDB</h2>
-  <p><strong>Kết nối:</strong> <code>mongodb://localhost:27017/skycast</code></p>
-  <div class="callout">
-    <strong>💡 Tự động khởi tạo:</strong> MongoDB tự tạo database <code>skycast</code> và collection <code>users</code> khi user đầu tiên đăng ký. Không cần setup thủ công.
-  </div>
-
-  <h3>Mongoose Schema — User</h3>
-  <div class="arch-box">
-{
-  <span class="green">name</span>:      String,          <span class="accent">// Tên hiển thị</span>
-  <span class="green">email</span>:     String,          <span class="accent">// unique index — không trùng lặp</span>
-  <span class="green">password</span>:  String,          <span class="accent">// bcrypt hash 10 rounds — KHÔNG lưu plain text</span>
-  <span class="green">favorites</span>: [{               <span class="accent">// Embedded array — không tách collection riêng</span>
-    <span class="yellow">label</span>:   String,          <span class="accent">// VD: "Hội An, Quảng Nam, Vietnam"</span>
-    <span class="yellow">lat</span>:     Number,          <span class="accent">// Vĩ độ</span>
-    <span class="yellow">lon</span>:     Number,          <span class="accent">// Kinh độ</span>
-  }],
-  <span class="green">createdAt</span>: Date,            <span class="accent">// timestamps: true (tự động bởi Mongoose)</span>
-  <span class="green">updatedAt</span>: Date,
-}
-  </div>
-  <div class="callout-purple callout">
-    <strong>Tại sao dùng Embedded Array?</strong> Favorites được nhúng trực tiếp vào User document thay vì tách thành collection riêng. Lý do: Mỗi user chỉ có tối đa ~20 địa điểm yêu thích, nên embedded giúp truy vấn nhanh hơn (1 query thay vì JOIN/populate), đơn giản hóa CRUD và đảm bảo data integrity.
-  </div>
-
-  <h3>Cấu hình môi trường (.env.local)</h3>
-  <div class="arch-box">
-<span class="accent"># ── BẮT BUỘC ─────────────────────────────────────────────</span>
-<span class="green">NEXT_PUBLIC_OPENWEATHER_API_KEY</span>=...   <span class="accent"># openweathermap.org</span>
-<span class="green">MONGODB_URI</span>=mongodb://localhost:27017/skycast
-<span class="green">NEXTAUTH_SECRET</span>=chuoi_bi_mat_bat_ky
-<span class="green">NEXTAUTH_URL</span>=http://localhost:3000
-
-<span class="accent"># ── TUỲ CHỌN (có Fallback khi thiếu) ─────────────────────</span>
-<span class="yellow">OPENAI_API_KEY</span>=...                    <span class="accent"># GPT-4o-mini</span>
-<span class="yellow">NEXT_PUBLIC_WAQI_TOKEN</span>=...            <span class="accent"># AQI</span>
-<span class="yellow">NEXT_PUBLIC_AMBEE_API_KEY</span>=...         <span class="accent"># Phấn hoa</span>
-  </div>
-  <div class="callout-warn callout">
-    <strong>⚠️ Quan trọng:</strong> <code>OPENAI_API_KEY</code> là <strong>tuỳ chọn</strong>. Khi thiếu hoặc hết quota, cả <code>weather-summary</code> lẫn <code>ai-planner</code> đều tự động chuyển sang thuật toán Fallback nội bộ — app không bao giờ bị crash.
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 8 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">8</span>Giao Diện &amp; Trải Nghiệm Người Dùng</h2>
-
-  <h3>Trang chủ — Dashboard (localhost:3000)</h3>
-  <table>
-    <thead><tr><th>Khu vực UI</th><th>Mô tả</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Header / Navbar</strong></td><td>Logo SKYCAST AI, link ⭐ Yêu thích / ⇄ So sánh / 🧩 Widget, Auth (Đăng nhập/xuất)</td></tr>
-      <tr><td><strong>Thanh tìm kiếm</strong></td><td>Autocomplete dropdown 5 gợi ý địa điểm từ OpenWeatherMap Geo API</td></tr>
-      <tr><td><strong>Card Thời tiết</strong></td><td>Nhiệt độ, mô tả VN, icon Gió/Ẩm/UV, ⭐ Yêu thích, 🔔 Cảnh báo, tóm tắt AI</td></tr>
-      <tr><td><strong>Dự báo 5 ngày</strong></td><td>Grid 5 card + Biểu đồ Area nhiệt độ 24h (Recharts)</td></tr>
-      <tr><td><strong>AI Cố Vấn</strong></td><td>Input kế hoạch → Điểm số, Trang phục, Giờ vàng, Lời khuyên AI</td></tr>
-      <tr><td><strong>Sức khoẻ</strong></td><td>AQI, UV Index, Phấn hoa Cây/Cỏ, Cảnh báo theo mức độ</td></tr>
-      <tr><td><strong>Bản đồ</strong></td><td>Leaflet interactive + 6 lớp: Radar, Nhiệt độ, Gió, Mây, Áp suất, Lượng mưa</td></tr>
-      <tr><td><strong>Lịch sử 30 ngày</strong></td><td>2 tab: 🌡️ Nhiệt độ Area / 🌧️ Lượng mưa Bar + 4 stat cards</td></tr>
-      <tr><td><strong>Hiệu ứng</strong></td><td>Hạt mưa/mây/tuyết Framer Motion theo điều kiện thời tiết thực</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Gradient nền thay đổi theo 4 khung giờ</h3>
-  <table>
-    <thead><tr><th>Giờ</th><th>Màu sắc</th><th>Ý nghĩa</th></tr></thead>
-    <tbody>
-      <tr><td>5h–11h</td><td>Cam nhạt → Slate</td><td>Bình minh / Sáng sớm</td></tr>
-      <tr><td>11h–16h</td><td>Vàng Amber → Sky</td><td>Ban trưa</td></tr>
-      <tr><td>16h–19h</td><td>Hồng/Rose → Indigo</td><td>Hoàng hôn</td></tr>
-      <tr><td>19h–5h</td><td>Slate đậm → Indigo thẫm</td><td>Đêm khuya</td></tr>
-    </tbody>
-  </table>
-
-  <h3>Các trang phụ</h3>
-  <div class="card-grid-2">
-    <div class="card">
-      <div class="card-icon">⭐</div>
-      <div class="card-title">Trang Yêu Thích (/favorites)</div>
-      <div class="card-desc">Giao diện lưới trực quan quản lý các địa điểm đã lưu. Cho phép xem nhanh thông tin tóm tắt và xóa. Truy cập từ link trên Navbar.</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚖️</div>
-      <div class="card-title">Trang So Sánh (/compare)</div>
-      <div class="card-desc">Nhập 2 thành phố, so sánh song song: nhiệt độ, ẩm, gió, UV, dự báo 3 ngày. Bảng kết quả chỉ thành phố thắng theo 4 tiêu chí.</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧩</div>
-      <div class="card-title">Widget Nhúng (/widget)</div>
-      <div class="card-desc">Widget nhỏ gọn 3 theme (dark/light/minimal), nhúng vào website qua <code>&lt;iframe&gt;</code>. Params: <code>?city=Hanoi&theme=dark</code></div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔐</div>
-      <div class="card-title">Auth Pages (/auth)</div>
-      <div class="card-desc">Form đăng nhập/đăng ký phong cách Glassmorphism. Đăng ký xong tự động đăng nhập. Mã hóa bcrypt 10 rounds.</div>
-    </div>
-  </div>
-
-  <h3>Luồng người dùng (User Flow)</h3>
-  <div class="arch-box">
-① Vào trang → Glassmorphism UI + hiệu ứng hạt khí hậu động
-② Gõ thành phố → Autocomplete hiện 5 gợi ý địa danh
-③ Chọn thành phố → Weather API lấy data, gradient nền cập nhật
-④ AI tóm tắt ~80 từ tiếng Việt xuất hiện trong Card chính
-⑤ Biểu đồ Area 24h hiện bên dưới Dự báo 5 ngày
-⑥ Lịch sử 30 ngày (Open-Meteo) tải ngầm, hiện ở cuối trang
-⑦ Bấm 🔔 → Trình duyệt xin quyền → Cảnh báo tự động khi bão/mưa
-⑧ Đăng ký / Đăng nhập → Bật tính năng Yêu thích
-⑨ Click ⭐ → Lưu vào MongoDB, quản lý tại <span class="green">trang /favorites chuyên biệt</span>
-⑩ Nhập kế hoạch → AI trả: Điểm + Trang phục + Giờ vàng + Lời khuyên
-⑪ Click ⇄ So sánh → Trang so sánh song song 2 thành phố
-⑫ Click 🧩 Widget → Xem widget, copy code iframe nhúng
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 9 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">9</span>Đặc Tả Chi Tiết Tính Năng</h2>
-
-  <div class="card-grid-2">
-    <div class="card"><div class="card-icon">🌡️</div><div class="card-title">Tra cứu thời tiết & Dự báo</div><div class="card-desc">OpenWeatherMap API lấy dữ liệu thực. Dịch tự động 50+ mô tả Anh → Việt. Dự báo 5 ngày + biểu đồ 24h. Autocomplete 5 gợi ý.</div><div style="margin-top:8px"><span class="tag">OpenWeatherMap</span><span class="tag">Geocoding</span><span class="tag">Recharts</span></div></div>
-    <div class="card"><div class="card-icon">🤖</div><div class="card-title">Tóm tắt AI tiếng Việt</div><div class="card-desc">GPT-4o-mini sinh đoạn tóm tắt ~80 từ tự nhiên. Fallback nội bộ tự sinh câu từ data thực khi API lỗi hoặc hết quota.</div><div style="margin-top:8px"><span class="tag tag-purple">GPT-4o-mini</span><span class="tag tag-orange">Fallback</span></div></div>
-    <div class="card"><div class="card-icon">🧳</div><div class="card-title">AI Cố Vấn Chuyến Đi</div><div class="card-desc">JSON Mode: Điểm số 0-100, trang phục đề xuất, giờ vàng xuất phát, lời khuyên cụ thể. Fallback tính điểm thuật toán.</div><div style="margin-top:8px"><span class="tag tag-purple">JSON Mode</span><span class="tag">Trang phục AI</span><span class="tag tag-orange">Fallback</span></div></div>
-    <div class="card"><div class="card-icon">👤</div><div class="card-title">Hệ thống Tài khoản</div><div class="card-desc">NextAuth v4 (JWT + Credentials). Mã hóa bcrypt 10 rounds. SessionProvider wrapper toàn ứng dụng.</div><div style="margin-top:8px"><span class="tag tag-green">NextAuth</span><span class="tag tag-green">bcrypt</span><span class="tag tag-green">MongoDB</span></div></div>
-    <div class="card"><div class="card-icon">⭐</div><div class="card-title">Trang Quản lý Yêu thích</div><div class="card-desc">Trang /favorites chuyên biệt với giao diện lưới. Lưu/xóa địa điểm vào MongoDB embedded array theo tài khoản.</div><div style="margin-top:8px"><span class="tag tag-green">Trang Favorites</span><span class="tag">CRUD API</span></div></div>
-    <div class="card"><div class="card-icon">📊</div><div class="card-title">Lịch sử 30 ngày</div><div class="card-desc">Open-Meteo API miễn phí. 2 tab biểu đồ: Area (nhiệt độ max/min) + Bar (lượng mưa). 4 stat cards tóm tắt.</div><div style="margin-top:8px"><span class="tag tag-green">Open-Meteo miễn phí</span><span class="tag">Recharts</span></div></div>
-    <div class="card"><div class="card-icon">🗺️</div><div class="card-title">Bản đồ Đa Lớp</div><div class="card-desc">Leaflet + RainViewer. 6 lớp: Radar mưa, Nhiệt độ, Tốc độ gió, Mây, Áp suất, Lượng mưa. Tương tác trực tiếp.</div><div style="margin-top:8px"><span class="tag">Leaflet</span><span class="tag">RainViewer</span><span class="tag">6 layers</span></div></div>
-    <div class="card"><div class="card-icon">🔔</div><div class="card-title">Push Notification</div><div class="card-desc">Web Notification API + Service Worker. Cảnh báo mưa/bão/dông. Rate limiting thông minh 1 lần/30 phút.</div><div style="margin-top:8px"><span class="tag">Service Worker</span><span class="tag tag-orange">Rate limit 30 phút</span></div></div>
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 10 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">10</span>Quy Trình Phát Triển</h2>
-
-  <div class="timeline">
-    <div class="timeline-item"><div class="timeline-dot dot-1">1</div><div class="timeline-content"><h4>Giai đoạn 1 — Nền tảng UI/UX</h4><p>Thiết kế Glassmorphism với Tailwind CSS. Tích hợp OpenWeatherMap API (thời tiết + dự báo). Xây dựng WeatherDashboard component (~300 dòng). Radar mưa RainRadarMap với Leaflet + RainViewer. Hiệu ứng WeatherAtmosphere (Framer Motion). Gradient nền động theo giờ. Autocomplete địa danh (Geo API).</p><div style="margin-top:6px"><span class="tag">Next.js setup</span><span class="tag">Tailwind</span><span class="tag">Leaflet</span><span class="tag">Framer Motion</span></div></div></div>
-    <div class="timeline-item"><div class="timeline-dot dot-2">2</div><div class="timeline-content"><h4>Giai đoạn 2 — Backend &amp; Authentication</h4><p>Kết nối MongoDB với Singleton Pattern (lib/mongoose.ts). Mongoose Schema User với embedded favorites[]. Cài đặt NextAuth v4 (JWT + Credentials Provider). Mã hoá bcrypt 10 rounds. Trang Login/Register Glassmorphism. SessionProvider wrapper toàn ứng dụng.</p><div style="margin-top:6px"><span class="tag tag-green">MongoDB</span><span class="tag tag-green">NextAuth</span><span class="tag tag-green">bcrypt</span></div></div></div>
-    <div class="timeline-item"><div class="timeline-dot dot-3">3</div><div class="timeline-content"><h4>Giai đoạn 3 — Favorites, Biểu đồ &amp; Việt hóa</h4><p>API CRUD Favorites (GET/POST/DELETE /api/favorites). Nút ⭐ Yêu thích + Trang Quản lý Favorites riêng biệt. HourlyChart.tsx — Recharts Area Chart 24h. Bảng dịch 50+ mô tả thời tiết Anh → Việt. Bổ sung Lucide icons. Việt hóa 100% giao diện.</p><div style="margin-top:6px"><span class="tag tag-orange">Recharts</span><span class="tag tag-orange">CRUD API</span><span class="tag tag-orange">Việt hóa</span></div></div></div>
-    <div class="timeline-item"><div class="timeline-dot dot-4">4</div><div class="timeline-content"><h4>Giai đoạn 4 — AI Nâng cao &amp; Fallback</h4><p>GPT-4o-mini JSON Mode cho AI Planner. API /api/ai-planner mới. Viết lại weather-summary dùng fetch thuần. generateFallbackSummary() sinh câu từ data thực. Fallback thuật toán cho cả 2 AI endpoint. Giao diện AI Planner mới: Điểm / Trang phục / Giờ vàng.</p><div style="margin-top:6px"><span class="tag tag-purple">GPT-4o-mini</span><span class="tag tag-purple">JSON Mode</span><span class="tag tag-orange">Fallback</span></div></div></div>
-    <div class="timeline-item"><div class="timeline-dot dot-5">5</div><div class="timeline-content"><h4>Giai đoạn 5 — Advanced Features</h4><p>Push Notification: sw.js Service Worker + NotificationToggle.tsx, giới hạn 1/30 phút. Lịch sử 30 ngày: API /api/history Open-Meteo + WeatherHistory.tsx 2 tab. So sánh 2 thành phố: /compare/page.tsx side-by-side. Widget nhúng: /widget/page.tsx 3 theme. Cập nhật Navbar.</p><div style="margin-top:6px"><span class="tag">Service Worker</span><span class="tag tag-green">Open-Meteo</span><span class="tag">Compare</span><span class="tag">Widget</span></div></div></div>
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 11 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">11</span>Kết Quả Đạt Được</h2>
-
-  <h3>🌤️ Core Weather (9/9)</h3>
-  <ul class="checklist">
-    <li><span class="check">✓</span>Tra cứu thời tiết toàn cầu theo tên thành phố</li>
-    <li><span class="check">✓</span>Autocomplete địa danh thông minh (OpenWeatherMap Geo API)</li>
-    <li><span class="check">✓</span>Dịch tự động 50+ mô tả thời tiết Anh → Việt</li>
-    <li><span class="check">✓</span>Dự báo 5 ngày + Biểu đồ Area nhiệt độ 24h (Recharts)</li>
-    <li><span class="check">✓</span>Chỉ số sức khỏe: AQI, UV Index, Phấn hoa Cây/Cỏ</li>
-    <li><span class="check">✓</span>Bản đồ Đa Lớp (6 lớp: Radar, Nhiệt độ, Gió, Mây, Áp suất, Lượng mưa)</li>
-    <li><span class="check">✓</span>Hiệu ứng khí quyển động theo điều kiện thực (Framer Motion)</li>
-    <li><span class="check">✓</span>Gradient nền thay đổi theo 4 khung giờ trong ngày</li>
-    <li><span class="check">✓</span>Việt hóa 100% toàn bộ giao diện</li>
-  </ul>
-
-  <h3>🤖 AI &amp; Phân Tích (3/3)</h3>
-  <ul class="checklist">
-    <li><span class="check">✓</span>Tóm tắt AI tiếng Việt — GPT-4o-mini + Fallback nội bộ sinh câu tự động</li>
-    <li><span class="check">✓</span>AI Cố Vấn Chuyến Đi — JSON Mode: Điểm, Trang phục, Giờ vàng xuất phát</li>
-    <li><span class="check">✓</span>Lịch sử 30 ngày miễn phí — Open-Meteo, Area + Bar Chart + 4 thống kê</li>
-  </ul>
-
-  <h3>👤 Full-Stack &amp; Auth (3/3)</h3>
-  <ul class="checklist">
-    <li><span class="check">✓</span>Hệ thống tài khoản đầy đủ — NextAuth + MongoDB + bcrypt 10 rounds</li>
-    <li><span class="check">✓</span>Lưu / Xoá địa điểm Yêu thích trên MongoDB (embedded array)</li>
-    <li><span class="check">✓</span>Trang <strong>/favorites chuyên biệt</strong> để quản lý các địa điểm đã lưu</li>
-  </ul>
-
-  <h3>⭐ Tính năng Cao Cấp (4/4)</h3>
-  <ul class="checklist">
-    <li><span class="check">✓</span><strong>Push Notification</strong> cảnh báo mưa/bão (Service Worker + rate limiting)</li>
-    <li><span class="check">✓</span><strong>So sánh 2 thành phố</strong> song song — trang /compare + bảng kết quả tự động</li>
-    <li><span class="check">✓</span><strong>Widget nhúng iframe</strong> 3 theme — trang /widget + copy code snippet</li>
-    <li><span class="check">✓</span>Tài liệu đầy đủ: SKYCAST_AI_DOCS.md + PRODUCT_BRIEF + Report PDF</li>
-  </ul>
-
-  <div class="callout callout-success">
-    <strong>✅ Đạt 19/19 tính năng đề ra.</strong> Ứng dụng hoạt động ổn định ngay cả khi không có OpenAI API key nhờ hệ thống Fallback thông minh. Không cần API key bổ sung cho lịch sử 30 ngày (Open-Meteo miễn phí hoàn toàn).
-  </div>
-
-  <!-- ══════════════ CHƯƠNG 12 ══════════════ -->
-  <h2 class="page-break"><span class="section-num">12</span>Giới Hạn, Hướng Cải Tiến &amp; Roadmap</h2>
-
-  <h3>Giới hạn hiện tại</h3>
-  <table>
-    <thead><tr><th>Giới hạn</th><th>Giải pháp đề xuất</th><th>Ưu tiên</th></tr></thead>
-    <tbody>
-      <tr><td>UV Index tính gần đúng từ % mây</td><td>Nâng cấp lên OpenWeather OneCall v3 (UV từ vệ tinh)</td><td><span class="tag tag-red">Cao</span></td></tr>
-      <tr><td>Push Notification chỉ client-side</td><td>Web Push Protocol server-side thực thụ + Cron job</td><td><span class="tag tag-red">Cao</span></td></tr>
-      <tr><td>Không có trang Profile người dùng</td><td>Trang /profile: đổi tên, mật khẩu, xem thống kê</td><td><span class="tag tag-red">Cao</span></td></tr>
-      <tr><td>OpenAI quota giới hạn</td><td>Fallback đã xử lý; nạp credit khi deploy production</td><td><span class="tag tag-green">Thấp</span></td></tr>
-      <tr><td>Không có Dark/Light mode toggle</td><td>CSS variables (HSL) + localStorage preference</td><td><span class="tag tag-orange">Trung bình</span></td></tr>
-      <tr><td>Không có tính năng chia sẻ kết quả</td><td>OG Image động (Next.js ImageResponse) + Share link</td><td><span class="tag tag-orange">Trung bình</span></td></tr>
-    </tbody>
-  </table>
-
-  <h3>Roadmap tổng thể</h3>
-  <div class="arch-box">
-<span class="green">2026 Q1 (Đã hoàn thành)</span> ──────────────────────────────────────
-  ✅ MVP → Full-Stack với Auth + MongoDB
-  ✅ AI Integration (GPT-4o-mini + Fallback thông minh)
-  ✅ 4 Advanced Features (Push, History, Compare, Widget)
-  ✅ Việt hóa 100% + Trang Favorites chuyên biệt
-
-<span class="yellow">2026 Q2 (Đề xuất tiếp theo)</span> ──────────────────────────────────
-  🔴 Server-side Push Notification thực thụ (web-push + Cron)
-  🔴 Trang Profile người dùng (đổi tên, mật khẩu, thống kê)
-  🔴 UV Index chính xác (OneCall API v3)
-  🟡 Dark/Light Mode toggle (CSS variables + localStorage)
-  🟡 Chia sẻ kết quả (Share + OG Image động)
-
-<span class="accent">2026 Q3</span> ──────────────────────────────────────────────────────
-  🟡 Tìm kiếm bằng GPS tự động (navigator.geolocation)
-  🟡 So sánh nâng cao (biểu đồ so sánh, export PDF)
-  🟢 PWA (Progressive Web App — offline support)
-  🟢 i18n (Tiếng Việt ↔ English)
-
-<span class="red">2026 Q4+</span> ─────────────────────────────────────────────────────
-  ⚪ React Native mobile app (tái sử dụng API Backend)
-  ⚪ Widget Marketplace cho developers
-  ⚪ Public API với key management + rate limiting
-  </div>
-
-  <!-- ── HƯỚNG DẪN CHẠY ── -->
-  <h3>Hướng dẫn chạy dự án</h3>
-  <div class="callout">
-    <strong>Yêu cầu:</strong> Node.js ≥ 18, MongoDB đang chạy tại localhost:27017
-  </div>
-  <table>
-    <thead><tr><th>Bước</th><th>Lệnh / Hành động</th></tr></thead>
-    <tbody>
-      <tr><td>1. Cài đặt</td><td><code>npm install</code></td></tr>
-      <tr><td>2. Cấu hình</td><td>Copy <code>.env.example</code> → <code>.env.local</code>, điền các key</td></tr>
-      <tr><td>3. Key bắt buộc</td><td><code>NEXT_PUBLIC_OPENWEATHER_API_KEY</code>, <code>MONGODB_URI</code>, <code>NEXTAUTH_SECRET</code>, <code>NEXTAUTH_URL</code></td></tr>
-      <tr><td>4. Development</td><td><code>npm run dev</code> → http://localhost:3000</td></tr>
-      <tr><td>5. Production</td><td><code>npm run build && npm start</code></td></tr>
-    </tbody>
-  </table>
-
-  <!-- Footer -->
-  <div class="footer">
-    <span>SKYCAST AI — Báo Cáo Tổng Hợp Dự Án v3.1</span>
-    <span>Phạm Phước Bình — 1721031063 — Chuyên Đề PTPM — 02/04/2026</span>
-  </div>
-
-</div><!-- end content -->
 </body>
 </html>
